@@ -17,17 +17,12 @@ public class CheckingAccount extends Account implements IAccount {
 
     @Override
     public void deposit(double amount) {
-
     }
 
     @Override
     public void withdrawal(double amount) {
-
-    }
-
-    @Override
-    public void updateBalance(double newBalance) {
-
+        double totalAmount = amount + withdrawalCommission;
+        super.withdrawal(totalAmount);
     }
 
     @Override
