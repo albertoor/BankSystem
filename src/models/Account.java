@@ -19,7 +19,7 @@ public class Account implements IAccount {
 
     @Override
     public void deposit(double amount) {
-
+        this.balance += amount;
     }
 
     @Override
@@ -30,13 +30,6 @@ public class Account implements IAccount {
             this.balance -= amount;
     }
 
-    @Override
-    public void updateBalance(double newBalance) {
 
-    }
-
-    @Override
-    public void accountStatus() {
-
-    }
+    public void accountStatus() {}
 }

@@ -2,7 +2,7 @@ package models;
 
 import interfaces.IAccount;
 
-public class CheckingAccount extends Account implements IAccount {
+public class CheckingAccount extends Account {
 
     private double withdrawalCommission;
 
