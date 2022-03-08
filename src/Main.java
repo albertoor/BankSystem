@@ -1,10 +1,11 @@
+import models.CheckingAccount;
 import models.Customer;
 
 public class Main {
     public static void main(String[] args) {
 
-        Customer customer = new Customer("juan petra", "12345", 14500.0);
-        System.out.println(customer.toString());
+        CheckingAccount checkingAccount = new CheckingAccount(15000, 5.0);
+        checkingAccount.accountStatus();
 //        SystemTerminal systemTerminal = new SystemTerminal();
 //        systemTerminal.startTerminal();
     }
