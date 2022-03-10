@@ -1,4 +1,4 @@
-package Models;
+package Models.bank;
 
 public abstract class BankAccount {
     protected double balance;

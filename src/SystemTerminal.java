@@ -1,9 +1,13 @@
+import Models.commands.ClientCommand;
+
 import java.util.Objects;
 
 public class SystemTerminal {
     private static final String PROP_USERNAME = "username";
     private static final String PROP_PASSWORD = "password";
     private static final byte TRY_LIMIT = 3;
+
+    public SystemTerminal() {}
 
     // Function to start my terminal
     protected void startTerminal() {
@@ -54,12 +58,16 @@ public class SystemTerminal {
     // Funciton to listener a command a handler action to execute
     private static void runCommandListener(){
         String command;
+        ClientCommand clientCommand = new ClientCommand();
         do {
             System.out.printf(">_ ");
             command = System.console().readLine();
             switch (command) {
                 case "ayuda":
                     System.out.println("runngin ayuda");
+                    break;
+                case "crear-cliente":
+                    clientCommand.runCommand();
                     break;
                 case "exit":
                     break;

@@ -1,9 +1,9 @@
 package Services;
 
-import Models.BankAccount;
-import Models.CheckingAccount;
-import Models.Customer;
-import Models.InvestmentAccount;
+import Models.bank.BankAccount;
+import Models.bank.CheckingAccount;
+import Models.bank.Customer;
+import Models.bank.InvestmentAccount;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -14,6 +14,10 @@ public class ProductManagerService {
     private Map<String, List<BankAccount>> productsMap = new HashMap<>();
 
     public ProductManagerService(){}
+
+    public Map<String, List<BankAccount>> getProductsMap() {
+        return productsMap;
+    }
 
     public void addProduct(Customer customer, BankAccount product){
         List<BankAccount> products = productsMap.get(customer.getId());

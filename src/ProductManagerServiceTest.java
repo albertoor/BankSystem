@@ -1,7 +1,6 @@
-import Models.BankAccount;
-import Models.Customer;
-import Models.InvestmentAccount;
-import Models.SavingsAccount;
+import Models.bank.Customer;
+import Models.bank.InvestmentAccount;
+import Models.bank.SavingsAccount;
 import Services.ProductManagerService;
 
 public class ProductManagerServiceTest {

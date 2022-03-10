@@ -1,4 +1,4 @@
-package Models;
+package Models.bank;
 
 public class SavingsAccount extends BankAccount{
     private static final double INTEREST_RATE = 0.16;

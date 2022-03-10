@@ -1,4 +1,4 @@
-package Models;
+package Models.bank;
 
 public class InvestmentAccount extends BankAccount{
     private double interestToCourt;
