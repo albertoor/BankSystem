@@ -16,9 +16,6 @@ public class BasicAccount extends WithdrawableAccount {
 
     @Override
     public void withdraw(double amount) {
-        if (amount > getBalance())
-            System.out.println("Fondos Insuficientes");
-        else
-            balance -= amount;
+        super.withdraw(amount);
     }
 }
