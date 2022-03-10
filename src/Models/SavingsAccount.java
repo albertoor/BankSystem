@@ -7,7 +7,7 @@ public class SavingsAccount extends BankAccount{
         super(balance);
     }
 
-    public void addInterest(){
+    protected void addInterest(){
         double interest = getBalance() * INTEREST_RATE / 100;
         deposit(interest);
     }
