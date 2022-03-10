@@ -15,11 +15,14 @@ public class ProductManagerService {
 
     public void addProduct(Customer customer, BankAccount bankAccount){
         List<BankAccount> products = productsMap.get(customer.getId());
-        if (products == null) {
-            products = new ArrayList<>();
-            productsMap.put(customer.getId(), products);
-        }
+        if (products == null) products = productsEmpty(customer.getId(), products);
         products.add(bankAccount);
+    }
+
+    public List<BankAccount> productsEmpty(String customerId, List<BankAccount> products){
+        products = new ArrayList<>();
+        productsMap.put(customerId, products);
+        return products;
     }
 
     public List<BankAccount> getProducts(String customerId) {

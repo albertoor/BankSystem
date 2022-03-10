@@ -15,5 +15,7 @@ public class ProductManagerServiceTest {
         productManagerService.addProduct(customer, sa);
         productManagerService.addProduct(customer, ia);
 
+        System.out.println(productManagerService.getProducts(customer.getId()).size());
+
     }
 }
