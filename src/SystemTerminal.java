@@ -1,7 +1,4 @@
-import Models.commands.CheckingAccountCommand;
-import Models.commands.ClientCommand;
-import Models.commands.InvestmentAccountCommand;
-import Models.commands.SavingsAccountCommand;
+import Models.commands.*;
 import Services.ClientsService;
 import Utils.GenerateRandom;
 
@@ -66,10 +63,10 @@ public class SystemTerminal {
         GenerateRandom gr = new GenerateRandom();
         ClientsService clientsService = new ClientsService();
         ClientCommand clientCommand = new ClientCommand(gr, clientsService);
-        SavingsAccountCommand savingsAccountCommand = new SavingsAccountCommand(gr);
-        CheckingAccountCommand checkingAccountCommand = new CheckingAccountCommand(gr);
-        InvestmentAccountCommand investmentAccountCommand = new InvestmentAccountCommand(gr);
+        CreateAccountMenu createAccountMenu = new CreateAccountMenu(gr);
+
         do {
+            System.out.printf("Welcome!");
             System.out.printf(">_ ");
             command = System.console().readLine();
             switch (command) {
@@ -82,14 +79,8 @@ public class SystemTerminal {
                 case "ver-clientes":
                     clientCommand.showClientAdded();
                     break;
-                case "crear-cuenta-ahorros":
-                    savingsAccountCommand.runCommand();
-                    break;
-                case "crear-cuenta-cheques":
-                    checkingAccountCommand.runCommand();
-                    break;
-                case "crear-cuenta-inversion":
-                    investmentAccountCommand.runCommand();
+                case "crear-cuenta":
+                    createAccountMenu.runCommand();
                     break;
                 case "exit":
                     break;
