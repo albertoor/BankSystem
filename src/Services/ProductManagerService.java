@@ -1,7 +1,9 @@
 package Services;
 
 import Models.BankAccount;
+import Models.CheckingAccount;
 import Models.Customer;
+import Models.InvestmentAccount;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -13,11 +15,28 @@ public class ProductManagerService {
 
     public ProductManagerService(){}
 
-    public void addProduct(Customer customer, BankAccount bankAccount){
+    public void addProduct(Customer customer, BankAccount product){
         List<BankAccount> products = productsMap.get(customer.getId());
-        if (products == null) products = productsEmpty(customer.getId(), products);
-        products.add(bankAccount);
+        if (products == null) products = productsEmpty(customer.getId(), null);
+        if (product instanceof InvestmentAccount) {
+            boolean validInvAcc = haveInvestmentAccount(products);
+            if (validInvAcc) products.add(product);
+            else return;
+        } else
+            products.add(product);
     }
+
+    public boolean haveInvestmentAccount(List products){
+        boolean haveCheckingAccount = products.stream().allMatch(CheckingAccount.class::isInstance);
+        if (haveCheckingAccount) {
+            System.out.println("Se agrego la cuenta de Inversion");
+        } else {
+            System.out.println("No se agrego la cuenta de Inversion, debes tener una cuneta de cheques primero");
+            return false;
+        }
+        return true;
+    }
+
 
     public List<BankAccount> productsEmpty(String customerId, List<BankAccount> products){
         products = new ArrayList<>();

@@ -12,8 +12,8 @@ public class ProductManagerServiceTest {
         SavingsAccount sa = new SavingsAccount(customer.getIncomePerMoth());
         InvestmentAccount ia = new InvestmentAccount(customer.getIncomePerMoth(), 0.05);
 
-        productManagerService.addProduct(customer, sa);
         productManagerService.addProduct(customer, ia);
+        productManagerService.addProduct(customer, sa);
 
         System.out.println(productManagerService.getProducts(customer.getId()).size());
 
