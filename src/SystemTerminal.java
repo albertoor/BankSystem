@@ -1,5 +1,4 @@
 import Models.commands.*;
-import Services.ClientsService;
 import Utils.GenerateRandom;
 
 import java.util.Objects;
@@ -61,9 +60,8 @@ public class SystemTerminal {
     private static void runCommandListener(){
         String command;
         GenerateRandom gr = new GenerateRandom();
-        ClientsService clientsService = new ClientsService();
-        ClientCommand clientCommand = new ClientCommand(gr, clientsService);
-        CreateAccountMenu createAccountMenu = new CreateAccountMenu(gr);
+        CreateAccountCommand createAccountCommand = new CreateAccountCommand(gr);
+        ClientsMenuCommand clientsMenuCommand = new ClientsMenuCommand(gr);
         HelpCommand helpCommand = new HelpCommand();
 
         do {
@@ -74,14 +72,11 @@ public class SystemTerminal {
                 case "ayuda":
                     helpCommand.runCommand();
                     break;
-                case "crear-cliente":
-                    clientCommand.runCommand();
+                case "clientes":
+                    clientsMenuCommand.runCommand();
                     break;
-                case "ver-clientes":
-                    clientCommand.showClientAdded();
-                    break;
-                case "crear-cuenta":
-                    createAccountMenu.runCommand();
+                case "crear-cuenta-bancaria":
+                    createAccountCommand.runCommand();
                     break;
                 case "salir":
                     break;
