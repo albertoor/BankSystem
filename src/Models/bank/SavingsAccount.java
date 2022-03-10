@@ -14,7 +14,7 @@ public class SavingsAccount extends BankAccount{
 
     @Override
     public void accountStatus() {
-        System.out.println("Estado de cuenta No. " + id);
+        System.out.println("Estado de Cuenta de Ahorro No. " + id);
         System.out.println("Balance: " + balance);
     }
 }

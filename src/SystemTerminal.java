@@ -1,4 +1,6 @@
-import Models.commands.ClientCommand;
+import Models.bank.CheckingAccount;
+import Models.commands.CheckingAccountCommand;
+import Models.commands.CustomerCommand;
 import Models.commands.SavingsAccountCommand;
 import Utils.GenerateRandom;
 
@@ -61,8 +63,9 @@ public class SystemTerminal {
     private static void runCommandListener(){
         String command;
         GenerateRandom gr = new GenerateRandom();
-        ClientCommand clientCommand = new ClientCommand(gr);
+        CustomerCommand clientCommand = new CustomerCommand(gr);
         SavingsAccountCommand savingsAccountCommand = new SavingsAccountCommand(gr);
+        CheckingAccountCommand checkingAccountCommand = new CheckingAccountCommand(gr);
         do {
             System.out.printf(">_ ");
             command = System.console().readLine();
@@ -74,6 +77,9 @@ public class SystemTerminal {
                     clientCommand.runCommand();
                 case "crear-cuenta-ahorros":
                     savingsAccountCommand.runCommand();
+                    break;
+                case "crear-cuenta-cheques":
+                    checkingAccountCommand.runCommand();
                     break;
                 case "exit":
                     break;

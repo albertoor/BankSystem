@@ -4,11 +4,11 @@ import Interfaces.Command;
 import Models.bank.Customer;
 import Utils.GenerateRandom;
 
-public class ClientCommand implements Command {
+public class CustomerCommand implements Command {
 
     private GenerateRandom gr;
 
-    public ClientCommand(GenerateRandom gr) {
+    public CustomerCommand(GenerateRandom gr) {
         this.gr = gr;
     }
 

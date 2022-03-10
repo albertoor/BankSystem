@@ -8,7 +8,6 @@ public class CheckingAccount extends BankAccount {
         super(balance, id);
     }
 
-
     @Override
     public void withdrawal(double amount) {
         double totalAmount = amount + withdrawalFee;
@@ -17,7 +16,8 @@ public class CheckingAccount extends BankAccount {
 
     @Override
     public void accountStatus() {
-
+        System.out.println("Estado de Cuenta de Cheques No. " + id);
+        System.out.println("Balance: " + balance);
     }
 
 }
