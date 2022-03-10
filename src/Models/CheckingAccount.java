@@ -1,22 +1,22 @@
 package Models;
 
-import Abstract.WithdrawableAccount;
-
-public class CheckingAccount extends WithdrawableAccount {
+public class CheckingAccount extends BankAccount {
 
     private double withdrawalFee;
 
-    public CheckingAccount(double balance, double withdrawalFee) {
+    public CheckingAccount(double balance) {
         super(balance);
-        this.withdrawalFee = withdrawalFee;
     }
 
     @Override
-    public void deposit(double amount) {}
-
-    @Override
-    public void withdraw(double amount) {
+    public void withdrawal(double amount) {
         double totalAmount = amount + withdrawalFee;
-        super.withdraw(totalAmount);
+        super.withdrawal(totalAmount);
     }
+
+    @Override
+    public void accountStatus() {
+
+    }
+
 }
