@@ -1,6 +1,8 @@
 import Models.bank.CheckingAccount;
+import Models.bank.InvestmentAccount;
 import Models.commands.CheckingAccountCommand;
 import Models.commands.CustomerCommand;
+import Models.commands.InvestmentAccountCommand;
 import Models.commands.SavingsAccountCommand;
 import Utils.GenerateRandom;
 
@@ -66,6 +68,7 @@ public class SystemTerminal {
         CustomerCommand clientCommand = new CustomerCommand(gr);
         SavingsAccountCommand savingsAccountCommand = new SavingsAccountCommand(gr);
         CheckingAccountCommand checkingAccountCommand = new CheckingAccountCommand(gr);
+        InvestmentAccountCommand investmentAccountCommand = new InvestmentAccountCommand(gr);
         do {
             System.out.printf(">_ ");
             command = System.console().readLine();
@@ -80,6 +83,9 @@ public class SystemTerminal {
                     break;
                 case "crear-cuenta-cheques":
                     checkingAccountCommand.runCommand();
+                    break;
+                case "crear-cuenta-inversion":
+                    investmentAccountCommand.runCommand();
                     break;
                 case "exit":
                     break;

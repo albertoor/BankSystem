@@ -29,6 +29,7 @@ public class InvestmentAccount extends BankAccount{
 
     @Override
     public void accountStatus() {
-
+        System.out.println("Estado de Cuenta de Inversion No. " + id);
+        System.out.println("Balance: " + balance);
     }
 }
