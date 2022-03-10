@@ -2,7 +2,7 @@ package Services;
 
 import Models.bank.BankAccount;
 import Models.bank.CheckingAccount;
-import Models.bank.Customer;
+import Models.bank.Client;
 import Models.bank.InvestmentAccount;
 
 import java.util.ArrayList;
@@ -19,7 +19,7 @@ public class ProductManagerService {
         return productsMap;
     }
 
-    public void addProduct(Customer customer, BankAccount product){
+    public void addProduct(Client customer, BankAccount product){
         List<BankAccount> products = productsMap.get(customer.getId());
         if (products == null) products = productsEmpty(customer.getId(), null);
         if (product instanceof InvestmentAccount) {

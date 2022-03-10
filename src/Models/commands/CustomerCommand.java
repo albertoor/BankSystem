@@ -1,7 +1,7 @@
 package Models.commands;
 
 import Interfaces.Command;
-import Models.bank.Customer;
+import Models.bank.Client;
 import Utils.GenerateRandom;
 
 public class CustomerCommand implements Command {
@@ -18,7 +18,7 @@ public class CustomerCommand implements Command {
         String name = System.console().readLine();
         System.out.println("Porfavor ingresa el ingreso mensual: ");
         double incomePerMoth =  Double.parseDouble(System.console().readLine());
-        Customer customer = new Customer(name, Integer.toString(gr.generateId()), incomePerMoth);
+        Client customer = new Client(name, Integer.toString(gr.generateId()), incomePerMoth);
         System.out.println("Cliente creado: ");
         System.out.println(customer);
     }

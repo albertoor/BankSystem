@@ -1,11 +1,11 @@
 package Models.bank;
 
-public class Customer {
+public class Client {
     private String name;
     private String id;
     private double incomePerMoth;
 
-    public Customer(String name, String id, double incomePerMoth) {
+    public Client(String name, String id, double incomePerMoth) {
         this.name = name;
         this.id = id;
         this.incomePerMoth = incomePerMoth;
