@@ -4,8 +4,8 @@ public class InvestmentAccount extends BankAccount{
     private double interestToCourt;
     private double tax = 0.16;
 
-    public InvestmentAccount(double balance, double interestToCourt) {
-        super(balance);
+    public InvestmentAccount(double balance, String id, double interestToCourt) {
+        super(balance, id);
         this.interestToCourt = interestToCourt;
     }
 

@@ -4,9 +4,10 @@ public class CheckingAccount extends BankAccount {
 
     private double withdrawalFee;
 
-    public CheckingAccount(double balance) {
-        super(balance);
+    public CheckingAccount(double balance, String id) {
+        super(balance, id);
     }
+
 
     @Override
     public void withdrawal(double amount) {

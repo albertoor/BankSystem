@@ -1,4 +1,6 @@
 import Models.commands.ClientCommand;
+import Models.commands.SavingsAccountCommand;
+import Utils.GenerateRandom;
 
 import java.util.Objects;
 
@@ -58,7 +60,9 @@ public class SystemTerminal {
     // Funciton to listener a command a handler action to execute
     private static void runCommandListener(){
         String command;
-        ClientCommand clientCommand = new ClientCommand();
+        GenerateRandom gr = new GenerateRandom();
+        ClientCommand clientCommand = new ClientCommand(gr);
+        SavingsAccountCommand savingsAccountCommand = new SavingsAccountCommand(gr);
         do {
             System.out.printf(">_ ");
             command = System.console().readLine();
@@ -68,6 +72,8 @@ public class SystemTerminal {
                     break;
                 case "crear-cliente":
                     clientCommand.runCommand();
+                case "crear-cuenta-ahorros":
+                    savingsAccountCommand.runCommand();
                     break;
                 case "exit":
                     break;

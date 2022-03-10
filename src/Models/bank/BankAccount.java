@@ -4,8 +4,9 @@ public abstract class BankAccount {
     protected double balance;
     protected String id;
 
-    public BankAccount(double balance) {
+    public BankAccount(double balance, String id) {
         this.balance = balance;
+        this.id = id;
     }
 
     public String getId() {
