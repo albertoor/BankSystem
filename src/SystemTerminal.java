@@ -80,7 +80,7 @@ public class SystemTerminal {
                     clientCommand.runCommand();
                     break;
                 case "ver-clientes":
-
+                    clientCommand.showClientAdded();
                     break;
                 case "crear-cuenta-ahorros":
                     savingsAccountCommand.runCommand();

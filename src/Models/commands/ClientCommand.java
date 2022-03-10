@@ -25,8 +25,12 @@ public class ClientCommand implements Command {
         Client customer = new Client(name, Integer.toString(gr.generateId()), incomePerMoth);
         System.out.println("Cliente creado: ");
         System.out.println(customer);
-
         clientsService.addClient(customer);
         System.out.println(clientsService.getClienstMap());
+    }
+
+    public void showClientAdded(){
+        System.out.println("Clientes agregados");
+        clientsService.getClienstMap().forEach((s, client) -> System.out.println(client));
     }
 }
