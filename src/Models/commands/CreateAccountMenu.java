@@ -1,9 +1,6 @@
 package Models.commands;
 
 import Interfaces.Command;
-import Models.bank.CheckingAccount;
-import Models.bank.InvestmentAccount;
-import Models.bank.SavingsAccount;
 import Utils.GenerateRandom;
 
 public class CreateAccountMenu implements Command {
@@ -21,11 +18,11 @@ public class CreateAccountMenu implements Command {
     public void runCommand() {
         String command;
         do {
-            System.out.println("- ahorro");
+            System.out.println("\n- ahorro");
             System.out.println("- inversion");
             System.out.println("- cheques");
             System.out.println("- regresar");
-            System.out.printf(">_ ");
+            System.out.printf("\nCrear cuentas>_ ");
             command = System.console().readLine();
             switch (command) {
                 case "ahorro":

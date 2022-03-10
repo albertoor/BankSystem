@@ -64,14 +64,15 @@ public class SystemTerminal {
         ClientsService clientsService = new ClientsService();
         ClientCommand clientCommand = new ClientCommand(gr, clientsService);
         CreateAccountMenu createAccountMenu = new CreateAccountMenu(gr);
+        HelpCommand helpCommand = new HelpCommand();
 
         do {
-            System.out.printf("Welcome!");
+            System.out.printf("Bienvenido!");
             System.out.printf(">_ ");
             command = System.console().readLine();
             switch (command) {
                 case "ayuda":
-                    System.out.println("runngin ayuda");
+                    helpCommand.runCommand();
                     break;
                 case "crear-cliente":
                     clientCommand.runCommand();
@@ -82,11 +83,11 @@ public class SystemTerminal {
                 case "crear-cuenta":
                     createAccountMenu.runCommand();
                     break;
-                case "exit":
+                case "salir":
                     break;
                 default:
                     System.err.printf("\"%s\" is not a recognized command%n", command);
             }
-        } while (!"exit".equalsIgnoreCase(command));
+        } while (!"salir".equalsIgnoreCase(command));
     }
 }
