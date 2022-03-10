@@ -16,7 +16,7 @@ public class ClientsCmds {
     public void createClient(){
         System.out.print("Porfavor ingresa el nombre del cliente: ");
         String name = System.console().readLine();
-        System.out.println("Porfavor ingresa el ingreso mensual: ");
+        System.out.print("Porfavor ingresa el ingreso mensual: ");
         double incomePerMoth =  Double.parseDouble(System.console().readLine());
         Client customer = new Client(name, gr.generateId(), incomePerMoth);
         System.out.println("Cliente creado: ");
@@ -25,7 +25,9 @@ public class ClientsCmds {
         System.out.println(clientsService.getClienstMap());
     }
 
-    public void showClient(){}
+    public void showClients(){
+        clientsService.getClienstMap().forEach((s, client) -> System.out.println(client));
+    }
 
     public void unsubscribe(){}
 }

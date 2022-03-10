@@ -2,7 +2,7 @@ package Models.commands;
 
 import Interfaces.Command;
 
-public class HelpCommand implements Command {
+public class HelpMenuCommand implements Command {
     @Override
     public void runCommand() {
         System.out.println("\nMenu Principal");

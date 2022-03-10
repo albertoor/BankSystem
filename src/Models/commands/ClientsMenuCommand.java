@@ -3,6 +3,7 @@ package Models.commands;
 import Interfaces.Command;
 import Models.commands.subcommands.ClientsCmds;
 import Services.ClientsService;
+import Services.ProductManagerService;
 import Utils.GenerateRandom;
 
 public class ClientsMenuCommand implements Command {
@@ -10,9 +11,9 @@ public class ClientsMenuCommand implements Command {
     private ClientsService clientsService;
     private ClientsCmds clientsCmds;
 
-    public ClientsMenuCommand(GenerateRandom gr) {
+    public ClientsMenuCommand(GenerateRandom gr, ClientsService clientsService) {
         this.gr = gr;
-        clientsService = new ClientsService();
+        this.clientsService = clientsService;
         clientsCmds = new ClientsCmds(gr, clientsService);
     }
 
@@ -27,7 +28,7 @@ public class ClientsMenuCommand implements Command {
                     clientsCmds.createClient();
                     break;
                 case "ver-clientes":
-                    clientsCmds.showClient();
+                    clientsCmds.showClients();
                     break;
                 case "dar-baja":
                     clientsCmds.unsubscribe();
@@ -38,10 +39,10 @@ public class ClientsMenuCommand implements Command {
 
     @Override
     public void displaySubMenu() {
-        System.out.println("\nClientes>_");
-        System.out.println("- crear-cliente");
+        System.out.println("\n- crear-cliente");
         System.out.println("- ver-clientes");
         System.out.println("- dar-baja");
         System.out.println("- regresar\n");
+        System.out.printf("\nClientes>_");
     }
 }

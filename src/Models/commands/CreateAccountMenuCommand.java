@@ -2,16 +2,22 @@ package Models.commands;
 
 import Interfaces.Command;
 import Models.commands.subcommands.CreateBankAccountCmds;
+import Services.ClientsService;
+import Services.ProductManagerService;
 import Utils.GenerateRandom;
 
-public class CreateAccountCommand implements Command{
+public class CreateAccountMenuCommand implements Command{
 
     private GenerateRandom gr;
     private CreateBankAccountCmds createBankAccountCmds;
+    private ClientsService clientsService;
+    private ProductManagerService productManagerService;
 
-    public CreateAccountCommand(GenerateRandom gr) {
+    public CreateAccountMenuCommand(GenerateRandom gr, ClientsService clientsService, ProductManagerService productManagerService) {
         this.gr = gr;
-        createBankAccountCmds = new CreateBankAccountCmds(gr);
+        this.clientsService = clientsService;
+        this.productManagerService = productManagerService;
+        createBankAccountCmds = new CreateBankAccountCmds(gr, clientsService, productManagerService);
     }
 
     @Override

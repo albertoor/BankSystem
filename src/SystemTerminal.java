@@ -1,4 +1,6 @@
 import Models.commands.*;
+import Services.ClientsService;
+import Services.ProductManagerService;
 import Utils.GenerateRandom;
 
 import java.util.Objects;
@@ -60,9 +62,12 @@ public class SystemTerminal {
     private static void runCommandListener(){
         String command;
         GenerateRandom gr = new GenerateRandom();
-        CreateAccountCommand createAccountCommand = new CreateAccountCommand(gr);
-        ClientsMenuCommand clientsMenuCommand = new ClientsMenuCommand(gr);
-        HelpCommand helpCommand = new HelpCommand();
+        ClientsService clientsService = new ClientsService();
+        ProductManagerService productManagerService = new ProductManagerService();
+        CreateAccountMenuCommand createAccountCommand = new CreateAccountMenuCommand(gr, clientsService, productManagerService);
+        ClientsMenuCommand clientsMenuCommand = new ClientsMenuCommand(gr, clientsService);
+        HelpMenuCommand helpCommand = new HelpMenuCommand();
+
 
         do {
             System.out.printf("Bienvenido!");
