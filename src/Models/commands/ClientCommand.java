@@ -22,7 +22,7 @@ public class ClientCommand implements Command {
         String name = System.console().readLine();
         System.out.println("Porfavor ingresa el ingreso mensual: ");
         double incomePerMoth =  Double.parseDouble(System.console().readLine());
-        Client customer = new Client(name, Integer.toString(gr.generateId()), incomePerMoth);
+        Client customer = new Client(name, gr.generateId(), incomePerMoth);
         System.out.println("Cliente creado: ");
         System.out.println(customer);
         clientsService.addClient(customer);

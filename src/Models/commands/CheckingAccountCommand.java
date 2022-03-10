@@ -15,7 +15,7 @@ public class CheckingAccountCommand implements Command {
     public void runCommand() {
         System.out.println("Ingresa el balance: ");
         double balance = Double.parseDouble(System.console().readLine());
-        CheckingAccount checkingAccount = new CheckingAccount(5000, Integer.toString(gr.generateId()));
+        CheckingAccount checkingAccount = new CheckingAccount(5000, gr.generateId());
         System.out.println("Cuenta creada");
         checkingAccount.accountStatus();
     }

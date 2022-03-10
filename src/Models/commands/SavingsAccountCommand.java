@@ -17,7 +17,7 @@ public class SavingsAccountCommand implements Command {
         String id = System.console().readLine();
         System.out.print("Ingrese el salario: ");
         double balance = Double.parseDouble(System.console().readLine());
-        SavingsAccount savingsAccount = new SavingsAccount(balance, Integer.toString(gr.generateId()));
+        SavingsAccount savingsAccount = new SavingsAccount(balance, gr.generateId());
         System.out.println("Cuenta creada");
         savingsAccount.accountStatus();
     }

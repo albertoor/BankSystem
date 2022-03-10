@@ -16,7 +16,7 @@ public class InvestmentAccountCommand implements Command {
     public void runCommand() {
         System.out.println("Ingresa el balance: ");
         double balance = Double.parseDouble(System.console().readLine());
-        InvestmentAccount investmentAccount = new InvestmentAccount(balance, Integer.toString(gr.generateId()), 0.05);
+        InvestmentAccount investmentAccount = new InvestmentAccount(balance, gr.generateId(), 0.05);
         System.out.println("Cuenta creada");
         investmentAccount.accountStatus();
     }
