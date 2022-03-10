@@ -1,9 +1,8 @@
-import Models.bank.CheckingAccount;
-import Models.bank.InvestmentAccount;
 import Models.commands.CheckingAccountCommand;
-import Models.commands.CustomerCommand;
+import Models.commands.ClientCommand;
 import Models.commands.InvestmentAccountCommand;
 import Models.commands.SavingsAccountCommand;
+import Services.ClientsService;
 import Utils.GenerateRandom;
 
 import java.util.Objects;
@@ -65,7 +64,8 @@ public class SystemTerminal {
     private static void runCommandListener(){
         String command;
         GenerateRandom gr = new GenerateRandom();
-        CustomerCommand clientCommand = new CustomerCommand(gr);
+        ClientsService clientsService = new ClientsService();
+        ClientCommand clientCommand = new ClientCommand(gr, clientsService);
         SavingsAccountCommand savingsAccountCommand = new SavingsAccountCommand(gr);
         CheckingAccountCommand checkingAccountCommand = new CheckingAccountCommand(gr);
         InvestmentAccountCommand investmentAccountCommand = new InvestmentAccountCommand(gr);
@@ -78,6 +78,10 @@ public class SystemTerminal {
                     break;
                 case "crear-cliente":
                     clientCommand.runCommand();
+                    break;
+                case "ver-clientes":
+
+                    break;
                 case "crear-cuenta-ahorros":
                     savingsAccountCommand.runCommand();
                     break;

@@ -2,14 +2,18 @@ package Models.commands;
 
 import Interfaces.Command;
 import Models.bank.Client;
+import Services.ClientsService;
 import Utils.GenerateRandom;
 
-public class CustomerCommand implements Command {
+public class ClientCommand implements Command {
 
     private GenerateRandom gr;
+    private ClientsService clientsService;
 
-    public CustomerCommand(GenerateRandom gr) {
+    public ClientCommand(GenerateRandom gr, ClientsService clientsService) {
         this.gr = gr;
+        this.clientsService = clientsService;
+
     }
 
     @Override
@@ -21,5 +25,8 @@ public class CustomerCommand implements Command {
         Client customer = new Client(name, Integer.toString(gr.generateId()), incomePerMoth);
         System.out.println("Cliente creado: ");
         System.out.println(customer);
+
+        clientsService.addClient(customer);
+        System.out.println(clientsService.getClienstMap());
     }
 }
