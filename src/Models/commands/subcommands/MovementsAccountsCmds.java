@@ -4,6 +4,7 @@ import Models.bank.BankAccount;
 import Models.bank.CheckingAccount;
 import Models.bank.InvestmentAccount;
 import Models.bank.SavingsAccount;
+import Models.commands.movements.Charge;
 import Models.commands.movements.Deposit;
 import Models.commands.movements.Withdrawal;
 import Services.ProductManagerService;
@@ -13,11 +14,13 @@ public class MovementsAccountsCmds {
     private ProductManagerService productManagerService;
     private Withdrawal withdrawal;
     private Deposit deposit;
+    private Charge charge;
 
     public MovementsAccountsCmds(ProductManagerService productManagerService) {
         this.productManagerService = productManagerService;
         withdrawal = new Withdrawal();
         deposit = new Deposit();
+        charge = new Charge();
     }
 
     public void withdrawal(BankAccount bankAccount) {
@@ -37,4 +40,15 @@ public class MovementsAccountsCmds {
         else if (bankAccount instanceof CheckingAccount)
             deposit.makeDepositChecking((CheckingAccount) bankAccount);
     }
+
+    public void charge(BankAccount bankAccount) {
+        if(bankAccount instanceof InvestmentAccount)
+            charge.makeChargeInvestment((InvestmentAccount) bankAccount);
+        else if (bankAccount instanceof SavingsAccount)
+            charge.makeChargeSaving((SavingsAccount) bankAccount);
+        else if (bankAccount instanceof CheckingAccount)
+            charge.makeChargeChecking((CheckingAccount) bankAccount);
+    }
+
+
 }

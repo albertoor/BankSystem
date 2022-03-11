@@ -31,16 +31,15 @@ public class MovementsAccountsCommand implements Command {
                 command = System.console().readLine();
                 switch (command) {
                     case "retiro":
-                        System.out.println("Retiro");
                         movementsAccountsCmds.withdrawal(bankAccount);
                         break;
                     case "cargo":
-                        System.out.println("Cargo");
+                        movementsAccountsCmds.charge(bankAccount);
                         break;
                     case "corte":
                         System.out.println("Corte");
+                        break;
                     case "deposito":
-                        System.out.println("Deposito");
                         movementsAccountsCmds.deposit(bankAccount);
                         break;
                 }
