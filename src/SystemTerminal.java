@@ -9,8 +9,12 @@ public class SystemTerminal {
     private static final String PROP_USERNAME = "username";
     private static final String PROP_PASSWORD = "password";
     private static final byte TRY_LIMIT = 3;
+    private static GenerateRandom gr;
+    private static ClientsService clientsService;
+    private static ProductManagerService productManagerService;
 
-    public SystemTerminal() {}
+    public SystemTerminal() {
+    }
 
     // Function to start my terminal
     protected void startTerminal() {
@@ -61,11 +65,14 @@ public class SystemTerminal {
     // Funciton to listener a command a handler action to execute
     private static void runCommandListener(){
         String command;
-        GenerateRandom gr = new GenerateRandom();
-        ClientsService clientsService = new ClientsService();
-        ProductManagerService productManagerService = new ProductManagerService();
+        gr = new GenerateRandom();
+        clientsService = new ClientsService();
+        productManagerService = new ProductManagerService();
+
         CreateAccountMenuCommand createAccountCommand = new CreateAccountMenuCommand(gr, clientsService, productManagerService);
         ClientsMenuCommand clientsMenuCommand = new ClientsMenuCommand(gr, clientsService);
+        AccountStatusCommand accountStatusCommand = new AccountStatusCommand(productManagerService);
+        MovementsAccountsCommand movementsAccountsCommand = new MovementsAccountsCommand(productManagerService);
         HelpMenuCommand helpCommand = new HelpMenuCommand();
 
         do {
@@ -81,6 +88,18 @@ public class SystemTerminal {
                     break;
                 case "crear-cuenta-bancaria":
                     createAccountCommand.runCommand();
+                    break;
+                case "estado-cuentas":
+                    accountStatusCommand.runCommand();
+                    break;
+                case "hacer-movimientos":
+                    movementsAccountsCommand.runCommand();
+                    break;
+                case "modificar-configuraciones":
+                    System.out.println("configuraciones");
+                    break;
+                case "modificar-propiedades":
+                    System.out.println("Propiedads");
                     break;
                 case "salir":
                     break;

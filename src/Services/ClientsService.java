@@ -27,7 +27,7 @@ public class ClientsService {
         return clientsMap.containsKey(clientId);
     }
 
-    public Client getUserById(String clientId) {
+    public Client findId(String clientId) {
         return clientsMap.get(clientId);
     }
 }

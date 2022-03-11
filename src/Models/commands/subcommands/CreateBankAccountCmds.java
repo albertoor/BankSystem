@@ -26,9 +26,11 @@ public class CreateBankAccountCmds {
                 System.out.print("Ingrese el salario: ");
                 double balance = Double.parseDouble(System.console().readLine());
                 SavingsAccount savingsAccount = new SavingsAccount(balance, gr.generateId());
-                Client client = clientsService.getUserById(id);
+                Client client = clientsService.findId(id);
                 System.out.println(client.toString());
                 productManagerService.addProduct(client,savingsAccount);
+
+                System.out.println("Cuenta creada: " + savingsAccount.getId());
             } else {
                 System.out.println("Id no valido");
             }
@@ -44,10 +46,13 @@ public class CreateBankAccountCmds {
             if (validId) {
                 System.out.print("Ingrese el salario: ");
                 double balance = Double.parseDouble(System.console().readLine());
-                InvestmentAccount savingsAccount = new InvestmentAccount(balance, gr.generateId(), 0.08);
-                Client client = clientsService.getUserById(id);
+                InvestmentAccount investmentAccount = new InvestmentAccount(balance, gr.generateId(), 0.08);
+                Client client = clientsService.findId(id);
                 System.out.println(client.toString());
-                productManagerService.addProduct(client,savingsAccount);
+                productManagerService.addProduct(client,investmentAccount);
+
+                System.out.println("Cuenta creada: " + investmentAccount.getId());
+
             } else {
                 System.out.println("Id no valido");
             }
@@ -64,7 +69,7 @@ public class CreateBankAccountCmds {
                 System.out.print("Ingrese el salario: ");
                 double balance = Double.parseDouble(System.console().readLine());
                 CheckingAccount savingsAccount = new CheckingAccount(balance, gr.generateId());
-                Client client = clientsService.getUserById(id);
+                Client client = clientsService.findId(id);
                 System.out.println(client.toString());
                 productManagerService.addProduct(client,savingsAccount);
             } else {

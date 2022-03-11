@@ -1,18 +1,15 @@
 package Services;
 
-import Models.bank.BankAccount;
-import Models.bank.CheckingAccount;
-import Models.bank.Client;
-import Models.bank.InvestmentAccount;
+import Models.bank.*;
 
 import javax.xml.crypto.dsig.spec.HMACParameterSpec;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class ProductManagerService {
+    // Products by cliente id
     private Map<String, List<BankAccount>> productsMap = new HashMap<>();
+    private List<BankAccount> listOfProducts = new ArrayList<>();
 
     public ProductManagerService(){}
 
@@ -31,11 +28,13 @@ public class ProductManagerService {
             if (f) {
                 System.out.println("YES");
                 products.add(product);
+                listOfProducts.add(product);
             } else {
                 System.out.println("NO");
             }
         }else{
             products.add(product);
+            listOfProducts.add(product);
         }
     }
 
@@ -63,20 +62,22 @@ public class ProductManagerService {
         return products;
     }
 
-    public static void main(String[] args) {
-        Client client = new Client("Beto", "12323", 90500);
-        ProductManagerService pms = new ProductManagerService();
-
-        CheckingAccount checking = new CheckingAccount(4500, "324");
-        InvestmentAccount investment = new InvestmentAccount(5000, "1213", 0.5);
-
-
-        pms.addProduct(client,investment);
-        pms.addProduct(client, checking);
-
-
-//        System.out.println(pms.getProducts(client.getId()));
-
+    public BankAccount findBankAccountById(String bankAccountId) {
+            return listOfProducts.stream().
+                filter(product -> product.getId().equals(bankAccountId))
+                .findFirst().orElse(null);
     }
 
+    public static void main(String[] args) {
+        Client client = new Client("Mario", "23424", 24535);
+        SavingsAccount savingsAccount = new SavingsAccount(3424,"42451");
+        SavingsAccount savingsAccount1 = new SavingsAccount(90220,"13423");
+
+        ProductManagerService productManagerService = new ProductManagerService();
+        productManagerService.addProduct(client, savingsAccount);
+        productManagerService.addProduct(client, savingsAccount);
+
+        BankAccount bankAccount = productManagerService.findBankAccountById("42451");
+        System.out.println(bankAccount.getId());
+    }
 }

@@ -50,6 +50,7 @@ public class CreateAccountMenuCommand implements Command{
         System.out.println("\n- ahorro");
         System.out.println("- inversion");
         System.out.println("- cheques");
+        System.out.println("- cuentas-user-id");
         System.out.println("- regresar");
         System.out.printf("\nCrear cuentas>_ ");
     }
