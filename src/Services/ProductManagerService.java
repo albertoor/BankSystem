@@ -9,7 +9,6 @@ import java.util.stream.Collectors;
 public class ProductManagerService {
     // Products by cliente id
     private Map<String, List<BankAccount>> productsMap = new HashMap<>();
-    private List<BankAccount> listOfProducts = new ArrayList<>();
 
     public ProductManagerService(){}
 
@@ -28,13 +27,11 @@ public class ProductManagerService {
             if (f) {
                 System.out.println("YES");
                 products.add(product);
-                listOfProducts.add(product);
             } else {
                 System.out.println("NO");
             }
         }else{
             products.add(product);
-            listOfProducts.add(product);
         }
     }
 
@@ -62,10 +59,11 @@ public class ProductManagerService {
         return products;
     }
 
-    public BankAccount findBankAccountById(String bankAccountId) {
-            return listOfProducts.stream().
-                filter(product -> product.getId().equals(bankAccountId))
-                .findFirst().orElse(null);
+    public BankAccount findBankAccountById(String clientId, String bankAccountId) {
+        List<BankAccount> list = productsMap.get(clientId);
+        return list.stream().
+            filter(product -> product.getId().equals(bankAccountId)).
+            findFirst().orElse(null);
     }
 
     public static void main(String[] args) {
@@ -75,9 +73,10 @@ public class ProductManagerService {
 
         ProductManagerService productManagerService = new ProductManagerService();
         productManagerService.addProduct(client, savingsAccount);
-        productManagerService.addProduct(client, savingsAccount);
+        productManagerService.addProduct(client, savingsAccount1);
 
-        BankAccount bankAccount = productManagerService.findBankAccountById("42451");
+        BankAccount bankAccount = productManagerService.findBankAccountById("23424", "324");
         System.out.println(bankAccount.getId());
+
     }
 }

@@ -18,27 +18,31 @@ public class MovementsAccountsCommand implements Command {
     public void runCommand() {
         System.out.print("Ingresa el ID de la cuenta: ");
         String id = System.console().readLine();
-        BankAccount bankAccount = productManagerService.findBankAccountById(id);
-        System.out.println(bankAccount.getId());
-
-//        do {
-//            displaySubMenu();
-//            command = System.console().readLine();
-//            switch (command) {
-//                case "retiro":
-//                    System.out.println("Retiro");
-//                    movementsAccountsCmds.makeWithdrawal();
-//                    break;
-//                case "cargo":
-//                    System.out.println("Cargo");
-//                    break;
-//                case "corte":
-//                    System.out.println("Corte");
-//                case "deposito":
-//                    System.out.println("Deposito");
-//                    break;
-//            }
-//        } while (!"regresar".equalsIgnoreCase(command));
+//        BankAccount bankAccount = productManagerService.findBankAccountById(id);
+//
+//        if (bankAccount != null) {
+//            String command;
+//            do {
+//                displaySubMenu();
+//                command = System.console().readLine();
+//                switch (command) {
+//                    case "retiro":
+//                        System.out.println("Retiro");
+//                        movementsAccountsCmds.makeWithdrawal(bankAccount);
+//                        break;
+//                    case "cargo":
+//                        System.out.println("Cargo");
+//                        break;
+//                    case "corte":
+//                        System.out.println("Corte");
+//                    case "deposito":
+//                        System.out.println("Deposito");
+//                        break;
+//                }
+//            } while (!"regresar".equalsIgnoreCase(command));
+//        } else {
+//            System.out.println("Cuenta no encontrada");
+//        }
     }
 
     @Override

@@ -13,17 +13,17 @@ public class MovementsAccountsCmds {
     }
 
     // deposito (deposito a mi tarjeta, como deposito en efectivo)
-    public void makeDeposit(){}
+    public void makeDeposit(BankAccount bankAccount){}
 
     // retiro
-    public void makeWithdrawal() {
+    public void makeWithdrawal(BankAccount bankAccount) {
         String bankAccountId = System.console().readLine();
 //        productManagerService.findBankAccountById(bankAccountId);
     }
 
     // corte
-    public void makeCut() {}
+    public void makeCut(BankAccount bankAccount) {}
 
     // cargo
-    public void makeChare(){}
+    public void makeChare(BankAccount bankAccount){}
 }
