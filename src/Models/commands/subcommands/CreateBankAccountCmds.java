@@ -1,9 +1,6 @@
 package Models.commands.subcommands;
 
-import Models.bank.CheckingAccount;
-import Models.bank.Client;
-import Models.bank.InvestmentAccount;
-import Models.bank.SavingsAccount;
+import Models.bank.*;
 import Services.ClientsService;
 import Services.ProductManagerService;
 import Utils.GenerateRandom;
@@ -32,7 +29,6 @@ public class CreateBankAccountCmds {
                 Client client = clientsService.getUserById(id);
                 System.out.println(client.toString());
                 productManagerService.addProduct(client,savingsAccount);
-                System.out.println(productManagerService.getProducts(id));
             } else {
                 System.out.println("Id no valido");
             }
@@ -40,18 +36,49 @@ public class CreateBankAccountCmds {
     }
 
     public void createInvestmentAccountCmd(){
-        System.out.println("Ingresa el balance: ");
-        double balance = Double.parseDouble(System.console().readLine());
-        InvestmentAccount investmentAccount = new InvestmentAccount(balance, gr.generateId(), 0.05);
-        System.out.println("Cuenta creada");
-        investmentAccount.accountStatus();
+        boolean validId = false;
+        do {
+            System.out.print("Ingresa el id del cliente: ");
+            String id = System.console().readLine();
+            validId = clientsService.userExist(id);
+            if (validId) {
+                System.out.print("Ingrese el salario: ");
+                double balance = Double.parseDouble(System.console().readLine());
+                InvestmentAccount savingsAccount = new InvestmentAccount(balance, gr.generateId(), 0.08);
+                Client client = clientsService.getUserById(id);
+                System.out.println(client.toString());
+                productManagerService.addProduct(client,savingsAccount);
+            } else {
+                System.out.println("Id no valido");
+            }
+        } while (!validId);
     }
 
     public void createCheckingAccountCmd() {
-        System.out.println("Ingresa el balance: ");
-        double balance = Double.parseDouble(System.console().readLine());
-        CheckingAccount checkingAccount = new CheckingAccount(5000, gr.generateId());
-        System.out.println("Cuenta creada");
-        checkingAccount.accountStatus();
+        boolean validId = false;
+        do {
+            System.out.print("Ingresa el id del cliente: ");
+            String id = System.console().readLine();
+            validId = clientsService.userExist(id);
+            if (validId) {
+                System.out.print("Ingrese el salario: ");
+                double balance = Double.parseDouble(System.console().readLine());
+                CheckingAccount savingsAccount = new CheckingAccount(balance, gr.generateId());
+                Client client = clientsService.getUserById(id);
+                System.out.println(client.toString());
+                productManagerService.addProduct(client,savingsAccount);
+            } else {
+                System.out.println("Id no valido");
+            }
+        } while (!validId);
     }
+
+    public void getUserAccounsCmd(){
+        System.out.print("Ingresa el id del usuario: ");
+        String id = System.console().readLine();
+        for (BankAccount ba : productManagerService.getProducts(id)) {
+            ba.accountStatus();
+        }
+    }
+
 }

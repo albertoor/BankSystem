@@ -5,6 +5,7 @@ import Models.bank.CheckingAccount;
 import Models.bank.Client;
 import Models.bank.InvestmentAccount;
 
+import javax.xml.crypto.dsig.spec.HMACParameterSpec;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -19,15 +20,23 @@ public class ProductManagerService {
         return productsMap;
     }
 
-    public void addProduct(Client customer, BankAccount product){
-        List<BankAccount> products = productsMap.get(customer.getId());
-        if (products == null) products = productsEmpty(customer.getId(), null);
-        if (product instanceof InvestmentAccount) {
-            boolean validInvAcc = haveInvestmentAccount(products);
-            if (validInvAcc) products.add(product);
-            else return;
-        } else
+    public void addProduct(Client client, BankAccount product){
+        List<BankAccount> products = productsMap.get(client.getId());
+        if (products == null){
+            products = new ArrayList<>();
+            productsMap.put(client.getId(), products);
+        }
+        if (product instanceof  InvestmentAccount) {
+            boolean f = products.stream().anyMatch(CheckingAccount.class::isInstance);
+            if (f) {
+                System.out.println("YES");
+                products.add(product);
+            } else {
+                System.out.println("NO");
+            }
+        }else{
             products.add(product);
+        }
     }
 
     public boolean haveInvestmentAccount(List products){
@@ -41,7 +50,6 @@ public class ProductManagerService {
         return true;
     }
 
-
     public List<BankAccount> productsEmpty(String customerId, List<BankAccount> products){
         products = new ArrayList<>();
         productsMap.put(customerId, products);
@@ -53,6 +61,22 @@ public class ProductManagerService {
         if (products == null)
             System.out.println("El cliente no tiene productos asignados");
         return products;
+    }
+
+    public static void main(String[] args) {
+        Client client = new Client("Beto", "12323", 90500);
+        ProductManagerService pms = new ProductManagerService();
+
+        CheckingAccount checking = new CheckingAccount(4500, "324");
+        InvestmentAccount investment = new InvestmentAccount(5000, "1213", 0.5);
+
+
+        pms.addProduct(client,investment);
+        pms.addProduct(client, checking);
+
+
+//        System.out.println(pms.getProducts(client.getId()));
+
     }
 
 }

@@ -36,6 +36,8 @@ public class CreateAccountMenuCommand implements Command{
                 case "cheques":
                     createBankAccountCmds.createCheckingAccountCmd();
                     break;
+                case "cuentas-user-id":
+                    createBankAccountCmds.getUserAccounsCmd();
                 case "regresar":
                     break;
             }

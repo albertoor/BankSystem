@@ -68,7 +68,6 @@ public class SystemTerminal {
         ClientsMenuCommand clientsMenuCommand = new ClientsMenuCommand(gr, clientsService);
         HelpMenuCommand helpCommand = new HelpMenuCommand();
 
-
         do {
             System.out.printf("Bienvenido!");
             System.out.printf(">_ ");
