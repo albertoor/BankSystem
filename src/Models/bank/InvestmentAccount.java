@@ -32,4 +32,5 @@ public class InvestmentAccount extends BankAccount{
         System.out.println("Estado de Cuenta de Inversion No. " + id);
         System.out.println("Balance: " + balance);
     }
+
 }

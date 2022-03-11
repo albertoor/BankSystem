@@ -68,10 +68,12 @@ public class CreateBankAccountCmds {
             if (validId) {
                 System.out.print("Ingrese el salario: ");
                 double balance = Double.parseDouble(System.console().readLine());
-                CheckingAccount savingsAccount = new CheckingAccount(balance, gr.generateId());
+                CheckingAccount checkingAccount = new CheckingAccount(balance, gr.generateId());
                 Client client = clientsService.findId(id);
                 System.out.println(client.toString());
-                productManagerService.addProduct(client,savingsAccount);
+                productManagerService.addProduct(client,checkingAccount);
+
+                System.out.println("Cuenta creada: " +checkingAccount.getId());
             } else {
                 System.out.println("Id no valido");
             }

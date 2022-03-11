@@ -7,6 +7,10 @@ public class SavingsAccount extends BankAccount{
         super(balance, id);
     }
 
+    public void withdrawal(double amount) {
+        super.withdrawal(amount);
+    }
+
     protected void addInterest(){
         double interest = getBalance() * INTEREST_RATE / 100;
         deposit(interest);
