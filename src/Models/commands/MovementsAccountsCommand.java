@@ -41,6 +41,7 @@ public class MovementsAccountsCommand implements Command {
                         System.out.println("Corte");
                     case "deposito":
                         System.out.println("Deposito");
+                        movementsAccountsCmds.deposit(bankAccount);
                         break;
                 }
             } while (!"regresar".equalsIgnoreCase(command));

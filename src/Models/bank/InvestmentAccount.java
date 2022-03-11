@@ -17,6 +17,10 @@ public class InvestmentAccount extends BankAccount{
         return tax;
     }
 
+    public void deposit(double amount){
+        super.deposit(amount);
+    }
+
     public void withdrawal(double amount) {
         super.withdrawal(amount);
     }

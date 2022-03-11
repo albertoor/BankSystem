@@ -1,10 +1,11 @@
-package Models.commands.subcommands;
+package Models.commands.movements;
 
+import Interfaces.WithdrawalCmd;
 import Models.bank.CheckingAccount;
 import Models.bank.InvestmentAccount;
 import Models.bank.SavingsAccount;
 
-public class Withdrawal implements Interfaces.Withdrawal {
+public class Withdrawal implements WithdrawalCmd {
 
     @Override
     public void makeWithdrawalInvestment(InvestmentAccount investmentAccount) {

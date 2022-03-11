@@ -8,6 +8,10 @@ public class CheckingAccount extends BankAccount {
         super(balance, id);
     }
 
+    public void deposit(double amount){
+        super.deposit(amount);
+    }
+
     @Override
     public void withdrawal(double amount) {
         double totalAmount = amount + withdrawalFee;
