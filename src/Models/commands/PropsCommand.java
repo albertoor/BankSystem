@@ -26,7 +26,7 @@ public class PropsCommand implements Command {
                 case "interes-corte":
                     propsCmds.setNewInteresToCourt();
                     break;
-                case "linea-credito":
+                case "linea-max-credito":
                     propsCmds.setNewLineOfCredit();
                     break;
                 case "regresar":

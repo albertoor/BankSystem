@@ -3,10 +3,20 @@ package Models.bank;
 public class CreditCardAccount extends BankAccount{
 
     private double lineOfCredit;
+    private double maxLineCredit;
 
-    public CreditCardAccount(double balance, String id, double lineOfCredit) {
+    public CreditCardAccount(double balance, String id, double lineOfCredit, double maxLineCredit) {
         super(balance, id);
         this.lineOfCredit = lineOfCredit;
+        this.maxLineCredit = maxLineCredit;
+    }
+
+    public double getMaxLineCredit() {
+        return maxLineCredit;
+    }
+
+    public void setMaxLineCredit(double maxLineCredit) {
+        this.maxLineCredit = maxLineCredit;
     }
 
     public double getLineOfCredit() {

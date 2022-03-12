@@ -3,13 +3,14 @@ package Models.commands;
 import Interfaces.Command;
 import Models.commands.subcommands.ClientsCmds;
 import Services.ClientsService;
+import Services.ProductManagerService;
 import Utils.GenerateRandom;
 
 public class ClientsMenuCommand implements Command {
     private ClientsCmds clientsCmds;
 
-    public ClientsMenuCommand(GenerateRandom gr, ClientsService clientsService) {
-        clientsCmds = new ClientsCmds(gr, clientsService);
+    public ClientsMenuCommand(GenerateRandom gr, ClientsService clientsService, ProductManagerService productManagerService) {
+        clientsCmds = new ClientsCmds(gr, clientsService, productManagerService);
     }
 
     @Override

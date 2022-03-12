@@ -74,7 +74,7 @@ public class SystemTerminal {
 
         CreateAccountMenuCommand createAccountCommand = new CreateAccountMenuCommand(gr, clientsService,
                 productManagerService);
-        ClientsMenuCommand clientsMenuCommand = new ClientsMenuCommand(gr, clientsService);
+        ClientsMenuCommand clientsMenuCommand = new ClientsMenuCommand(gr, clientsService, productManagerService);
         AccountStatusCommand accountStatusCommand = new AccountStatusCommand(productManagerService, clientsService);
         MovementsAccountsCommand movementsAccountsCommand = new MovementsAccountsCommand(productManagerService);
         PropsCommand propsCommand = new PropsCommand(productManagerService);

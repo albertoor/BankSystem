@@ -89,8 +89,9 @@ public class CreateBankAccountCmds {
                 Client client = clientsService.findId(id);
                 double balance = readInput.readDouble("Ingrese el salario:");
                 double lineOfCredit = readInput.readDouble("Ingresar la linea de credito: ");
+                double maxLinaCredit = readInput.readDouble("Ingresar la linea max de credito: ");
 
-                CreditCardAccount creditCardAccount = new CreditCardAccount(balance, gr.generateId(), lineOfCredit);
+                CreditCardAccount creditCardAccount = new CreditCardAccount(balance, gr.generateId(), lineOfCredit, maxLinaCredit);
                 productManagerService.addProduct(client, creditCardAccount);
 
                 System.out.println("\nTarjeta de credito creada: " + creditCardAccount.getId() + "\n");

@@ -1,6 +1,7 @@
 package Models.commands.subcommands;
 import Models.bank.Client;
 import Services.ClientsService;
+import Services.ProductManagerService;
 import Utils.GenerateRandom;
 import Utils.ReadInput;
 
@@ -8,11 +9,13 @@ public class ClientsCmds {
     private GenerateRandom gr;
     private ClientsService clientsService;
     private ReadInput readInput;
+    private ProductManagerService productManagerService;
 
-    public ClientsCmds(GenerateRandom gr, ClientsService clientsService) {
+    public ClientsCmds(GenerateRandom gr, ClientsService clientsService, ProductManagerService productManagerService) {
         this.gr = gr;
         readInput = new ReadInput();
         this.clientsService = clientsService;
+        this.productManagerService = productManagerService;
     }
 
     public void createClient() {
@@ -28,5 +31,13 @@ public class ClientsCmds {
         clientsService.getClienstMap().forEach((s, client) -> System.out.println(client));
     }
 
-    public void unsubscribe(){}
+    public void unsubscribe(){
+        String id = readInput.readString("Ingresa el id: ");
+        Client client = clientsService.findId(id);
+        if (client != null) {
+            productManagerService.canCancel(client);
+        } else {
+            System.out.println("Usuario no existe");
+        }
+    }
 }

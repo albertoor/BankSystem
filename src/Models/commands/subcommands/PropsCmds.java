@@ -65,10 +65,10 @@ public class PropsCmds {
 
         if (bankAccount != null ){
             if (bankAccount instanceof CreditCardAccount) {
-                System.out.println( "Linea de credito actual: " + ((CreditCardAccount) bankAccount).getLineOfCredit());
+                System.out.println( "Linea de credito actual: " + ((CreditCardAccount) bankAccount).getMaxLineCredit());
                 double newLineCredit = readInput.readDouble("Ingrese la nueva linea de credito: ");
-                ((CreditCardAccount) bankAccount).setLineOfCredit(newLineCredit);
-                System.out.println("Nueva liena de credito: " + ((CreditCardAccount) bankAccount).getLineOfCredit());
+                ((CreditCardAccount) bankAccount).setMaxLineCredit(newLineCredit);
+                System.out.println("Nueva liena de credito: " + ((CreditCardAccount) bankAccount).getMaxLineCredit());
             } else {
                 System.out.println("No es una cuenta de inversion");
             }

@@ -23,34 +23,25 @@ public class ProductManagerService {
             products = new ArrayList<>();
             productsMap.put(client.getId(), products);
         }
+        if (product instanceof CreditCardAccount) {
+            double incomeMonthly = client.getIncomePerMoth();
+            double lineCredit = ((CreditCardAccount) product).getLineOfCredit();
+            if (lineCredit > incomeMonthly * ((CreditCardAccount) product).getMaxLineCredit()) {
+                System.out.println("Linea de credito excesiva para este cliente");
+                return;
+            }
+        }
         if (product instanceof InvestmentAccount) {
-            boolean f = products.stream().anyMatch(CheckingAccount.class::isInstance);
-            if (f) {
-                System.out.println("YES");
+            boolean valid = products.stream().anyMatch(CheckingAccount.class::isInstance);
+            if (valid) {
+                System.out.println("No se agrego la cuenta de Inversion, debes tener una cuneta de cheques primero");
                 products.add(product);
             } else {
-                System.out.println("NO");
+                System.out.println("Se agrego la cuenta de Inversion");
             }
         } else {
             products.add(product);
         }
-    }
-
-    public boolean haveInvestmentAccount(List products) {
-        boolean haveCheckingAccount = products.stream().allMatch(CheckingAccount.class::isInstance);
-        if (haveCheckingAccount) {
-            System.out.println("Se agrego la cuenta de Inversion");
-        } else {
-            System.out.println("No se agrego la cuenta de Inversion, debes tener una cuneta de cheques primero");
-            return false;
-        }
-        return true;
-    }
-
-    public List<BankAccount> productsEmpty(String customerId, List<BankAccount> products) {
-        products = new ArrayList<>();
-        productsMap.put(customerId, products);
-        return products;
     }
 
     public List<BankAccount> getProducts(String customerId) {
@@ -68,5 +59,17 @@ public class ProductManagerService {
         return list.stream().
             filter(product -> product.getId().equals(bankAccountId)).
             findFirst().orElse(null);
+    }
+
+    public boolean canCancel(Client client) {
+        List<BankAccount> products = getProducts(client.getId());
+        boolean result = true;
+        for (BankAccount ba : products) {
+            if (ba.getBalance() != 0.0) {
+                result = false;
+                ba.accountStatus();
+            }
+        }
+        return result;
     }
 }
