@@ -12,13 +12,18 @@ public class SavingsAccount extends BankAccount{
     }
 
     public void deposit(double amount){
-        super.deposit(amount);
+        double interest = amount * INTEREST_RATE / 100;
+        super.deposit(amount - interest);
     }
 
 
     @Override
     public void accountStatus() {
-        System.out.println("Estado de Cuenta de Ahorro No. " + id);
-        System.out.println("Balance: " + balance);
+        System.out.println("\n===== ESTADO DE CUENTA =====");
+        System.out.println("===== Cuenta de ahorro =====");
+        System.out.println("ID: " + id);
+        System.out.println("Saldo: " + balance);
+        System.out.println("Tasa interes por deposito: " + INTEREST_RATE);
+        System.out.println("============================\n");
     }
 }

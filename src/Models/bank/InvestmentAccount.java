@@ -2,20 +2,15 @@ package Models.bank;
 
 public class InvestmentAccount extends BankAccount{
     private double interestCommission;
-    private double interestToCourt;
+    private double tax;
 
-    public InvestmentAccount(double balance, String id, double interestToCourt, double interestCommission) {
+    public InvestmentAccount(double balance, String id, double interestCommission) {
         super(balance, id);
-        this.interestToCourt = interestToCourt;
         this.interestCommission = interestCommission;
     }
 
-    public double getInterestToCourt() {
-        return interestToCourt;
-    }
-
-    public void setInterestToCourt(double interestToCourt) {
-        this.interestToCourt = interestToCourt;
+    public double getTax() {
+        return tax;
     }
 
     public double getInterestCommission() {
@@ -35,15 +30,20 @@ public class InvestmentAccount extends BankAccount{
     }
 
     public void applyCut() {
-        double grossInterest = getBalance() * getInterestToCourt();
+        double grossInterest = getBalance() * getTax();
         double netInterest = grossInterest - (grossInterest * getInterestCommission());
         deposit(netInterest);
     }
 
     @Override
     public void accountStatus() {
-        System.out.println("Estado de Cuenta de Inversion No. " + id);
-        System.out.println("Balance: " + balance);
+        System.out.println("\n===== ESTADO DE CUENTA =====");
+        System.out.println("===== Cuenta de inversion =====");
+        System.out.println("ID: " + id);
+        System.out.println("Saldo: " + balance);
+        System.out.println("Impuesto: " + getTax());
+        System.out.println("Tasa interes por comision: " + interestCommission);
+        System.out.println("============================\n");
     }
 
 }

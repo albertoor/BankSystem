@@ -2,6 +2,7 @@ package Models.commands.subcommands;
 
 
 import Models.bank.BankAccount;
+import Models.bank.CheckingAccount;
 import Models.bank.CreditCardAccount;
 import Models.bank.InvestmentAccount;
 import Services.ProductManagerService;
@@ -31,7 +32,7 @@ public class PropsCmds {
                 ((InvestmentAccount) bankAccount).setInterestCommission(newWithdrawalCommission);
                 System.out.println("Nueva comision de retiro: " + ((InvestmentAccount) bankAccount).getInterestCommission());
             } else {
-                System.out.println("No es una cuenta de inversion");
+                System.out.print("No es una cuenta de inversion");
             }
         } else {
             System.out.println("No hay cuenta");
@@ -44,11 +45,11 @@ public class PropsCmds {
         BankAccount bankAccount = productManagerService.findBankAccountById(clientId, bankAccountId);
 
         if (bankAccount != null) {
-            if (bankAccount instanceof InvestmentAccount) {
-                System.out.println( "Comision de interest de corte: " + ((InvestmentAccount) bankAccount).getInterestToCourt());
+            if (bankAccount instanceof CheckingAccount) {
+                System.out.println( "Comision de interest de corte: " + ((CheckingAccount) bankAccount).getWithdrawalFee());
                 double newInterestCourt = readInput.readDouble("Ingrese el nuevo interes de corte: ");
-                ((InvestmentAccount) bankAccount).setInterestToCourt(newInterestCourt);
-                System.out.println("Nuevo interest de corte: " + ((InvestmentAccount) bankAccount).getInterestToCourt());
+                ((CheckingAccount) bankAccount).setWithdrawalFee(newInterestCourt);
+                System.out.println("Nuevo interest de corte: " + ((CheckingAccount) bankAccount).getWithdrawalFee());
             } else {
                 System.out.println("No es una cuenta de inversion");
             }

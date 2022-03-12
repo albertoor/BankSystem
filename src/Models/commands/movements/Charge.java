@@ -1,6 +1,7 @@
 package Models.commands.movements;
 
 import Models.bank.CheckingAccount;
+import Models.bank.CreditCardAccount;
 import Models.bank.InvestmentAccount;
 import Models.bank.SavingsAccount;
 import Utils.ReadInput;
@@ -8,7 +9,7 @@ import Utils.ReadInput;
 public class Charge {
 
     private ReadInput readInput = new ReadInput();
-    private static final String MSG_DEFAULT = "Ingresa la cantidad a retiar por cargo";
+    private static final String MSG_DEFAULT = "Ingresa la cantidad a retiar por cargo: ";
     private static final String MSG_REASON = "Motivo de pago: ";
 
     public void makeChargeSaving(SavingsAccount savingsAccount) {
@@ -36,5 +37,14 @@ public class Charge {
         checkingAccount.withdrawal(amountToWithdrawCharge);
         System.out.println("Cargo de " + amountToWithdrawCharge + " por " + reason);
         System.out.println("Nuevo Balance: " + checkingAccount.getBalance());
+    }
+
+    public void makeChargeCredit(CreditCardAccount creditCardAccount) {
+        System.out.println("Balance actual: " + creditCardAccount.getBalance());
+        String reason = readInput.readString(MSG_REASON);
+        double amountToWithdrawCharge = readInput.readDouble(MSG_DEFAULT);
+        creditCardAccount.withdrawal(amountToWithdrawCharge);
+        System.out.println("Cargo de " + amountToWithdrawCharge + " por " + reason);
+        System.out.println("Nuevo Balance: " + creditCardAccount.getBalance());
     }
 }

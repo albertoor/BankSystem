@@ -1,6 +1,7 @@
 package Models.commands.movements;
 
 import Models.bank.CheckingAccount;
+import Models.bank.CreditCardAccount;
 import Models.bank.InvestmentAccount;
 import Models.bank.SavingsAccount;
 import Utils.ReadInput;
@@ -8,7 +9,7 @@ import Utils.ReadInput;
 public class Deposit  {
 
     private ReadInput readInput = new ReadInput();
-    private static final String MSG_DEFAULT = "Ingresa la cantidad a depositar";
+    private static final String MSG_DEFAULT = "Ingresa la cantidad a depositar: ";
 
     public void makeDepositChecking(CheckingAccount checkingAccount) {
         System.out.println("Balance actual: " + checkingAccount.getBalance());
@@ -29,5 +30,12 @@ public class Deposit  {
         double amountToDeposit = readInput.readDouble(MSG_DEFAULT);
         investmentAccount.deposit(amountToDeposit);
         System.out.println("Nuevo Balance: " + investmentAccount.getBalance());
+    }
+
+    public void makeDepositCredit(CreditCardAccount creditCardAccount) {
+        System.out.println("Balance actual: " + creditCardAccount.getBalance());
+        double amountToDeposit = readInput.readDouble("Deposita cantidad para pagar a tarjeta de credito: ");
+        creditCardAccount.deposit(amountToDeposit);
+        System.out.println("Nuevo Balance: " + creditCardAccount.getBalance());
     }
 }

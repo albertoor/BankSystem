@@ -4,16 +4,11 @@ import Interfaces.Command;
 import Models.commands.subcommands.ClientsCmds;
 import Services.ClientsService;
 import Utils.GenerateRandom;
-import Utils.ReadInput;
 
 public class ClientsMenuCommand implements Command {
-    private GenerateRandom gr;
-    private ClientsService clientsService;
     private ClientsCmds clientsCmds;
 
     public ClientsMenuCommand(GenerateRandom gr, ClientsService clientsService) {
-        this.gr = gr;
-        this.clientsService = clientsService;
         clientsCmds = new ClientsCmds(gr, clientsService);
     }
 

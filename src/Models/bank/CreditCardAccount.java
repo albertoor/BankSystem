@@ -22,18 +22,18 @@ public class CreditCardAccount extends BankAccount{
         super.deposit(amount);
     }
 
-    protected void withdrawal(double amount) {
+    public void withdrawal(double amount) {
         if (balance - amount < lineOfCredit * -1)
             System.out.println("Linea de credito insuficiente");
         else
             super.withdrawal(amount);
     }
 
-
     @Override
     public void accountStatus() {
         System.out.println("\n===== ESTADO DE CUENTA =====");
         System.out.println("===== Tarjeta de Credito =====");
+        System.out.println("ID: " + id);
         System.out.println("Saldo: " + balance);
         System.out.println("Linea de crédito: " + lineOfCredit);
         System.out.println("============================\n");
