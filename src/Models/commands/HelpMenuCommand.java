@@ -8,12 +8,10 @@ public class HelpMenuCommand implements Command {
         System.out.println("\nMenu Principal");
         System.out.println("- ayuda");
         System.out.println("- clientes");
-        System.out.println("- crear-cuenta-bancaria");
-        System.out.println("- estado-cuentas");
-        System.out.println("- hacer-movimientos");
-        System.out.println("- modificar-configuraciones");
-        System.out.println("- modificar-propiedades");
-        System.out.println("- transferencias");
+        System.out.println("- crear-cuenta");
+        System.out.println("- estados");
+        System.out.println("- movimientos");
+        System.out.println("- propiedades");
         System.out.println("- salir\n");
     }
 

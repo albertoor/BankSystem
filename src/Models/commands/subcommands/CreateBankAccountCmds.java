@@ -46,7 +46,14 @@ public class CreateBankAccountCmds {
             if (validId) {
                 System.out.print("Ingrese el salario: ");
                 double balance = Double.parseDouble(System.console().readLine());
-                InvestmentAccount investmentAccount = new InvestmentAccount(balance, gr.generateId(), 0.08);
+
+                System.out.print("Ingrese el interes al corte: ");
+                double interestToCourt = Double.parseDouble(System.console().readLine());
+
+                System.out.print("Ingrese el interes de comision: ");
+                double interestCommssion = Double.parseDouble(System.console().readLine());
+
+                InvestmentAccount investmentAccount = new InvestmentAccount(balance, gr.generateId(), interestToCourt, interestCommssion );
                 Client client = clientsService.findId(id);
                 System.out.println(client.toString());
                 productManagerService.addProduct(client,investmentAccount);
@@ -79,6 +86,33 @@ public class CreateBankAccountCmds {
             }
         } while (!validId);
     }
+
+    public void createCreditCardAccountCmd(){
+        boolean validId = false;
+        do {
+            System.out.print("Ingresa el id del cliente: ");
+            String id = System.console().readLine();
+            validId = clientsService.userExist(id);
+            if (validId) {
+                System.out.print("Ingrese el salario: ");
+                double balance = Double.parseDouble(System.console().readLine());
+                Client client = clientsService.findId(id);
+
+                System.out.print("Ingresar la linea de credito: ");
+                double lineOfCredit = Double.parseDouble(System.console().readLine());
+
+                CreditCardAccount creditCardAccount = new CreditCardAccount(balance, gr.generateId(), lineOfCredit);
+                productManagerService.addProduct(client, creditCardAccount);
+
+                System.out.println("Tarjeta de credito creada: " + creditCardAccount.getId());
+
+            } else {
+                System.out.println("Id no valido");
+            }
+        } while (!validId);
+    }
+
+
 
     public void getUserAccounsCmd(){
         System.out.print("Ingresa el id del usuario: ");

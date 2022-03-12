@@ -66,28 +66,28 @@ public class ProductManagerService {
             findFirst().orElse(null);
     }
 
-    public static void main(String[] args) {
-        Client client = new Client("Mario", "23424", 24535);
-        SavingsAccount savingsAccount = new SavingsAccount(3424,"42451");
-        SavingsAccount savingsAccount1 = new SavingsAccount(90220,"13423");
-        CheckingAccount checkingAccount = new CheckingAccount(9000, "67809");
-        InvestmentAccount investmentAccount = new InvestmentAccount(2000.0, "12782", 0.05);
+//    public static void main(String[] args) {
+//        Client client = new Client("Mario", "23424", 24535);
+//        SavingsAccount savingsAccount = new SavingsAccount(3424,"42451");
+//        SavingsAccount savingsAccount1 = new SavingsAccount(90220,"13423");
+//        CheckingAccount checkingAccount = new CheckingAccount(9000, "67809");
+//        InvestmentAccount investmentAccount = new InvestmentAccount(2000.0, "12782", 0.05);
+//
+//        ProductManagerService productManagerService = new ProductManagerService();
+//        productManagerService.addProduct(client, savingsAccount);
+//        productManagerService.addProduct(client, savingsAccount1);
+//        productManagerService.addProduct(client, checkingAccount);
+//        productManagerService.addProduct(client, investmentAccount);
+//
+//
+//        BankAccount bankAccount = productManagerService.findBankAccountById("23424", "12782");
+//        System.out.println(bankAccount);
+//
+//        ((InvestmentAccount) bankAccount).withdrawal(600);
+//        ((InvestmentAccount) bankAccount).withdrawal(600);
+//        ((InvestmentAccount) bankAccount).applyCut();
+//        bankAccount.accountStatus();
 
-        ProductManagerService productManagerService = new ProductManagerService();
-        productManagerService.addProduct(client, savingsAccount);
-        productManagerService.addProduct(client, savingsAccount1);
-        productManagerService.addProduct(client, checkingAccount);
-        productManagerService.addProduct(client, investmentAccount);
 
-
-        BankAccount bankAccount = productManagerService.findBankAccountById("23424", "12782");
-        System.out.println(bankAccount);
-
-        ((InvestmentAccount) bankAccount).withdrawal(600);
-        ((InvestmentAccount) bankAccount).withdrawal(600);
-        ((InvestmentAccount) bankAccount).applyCut();
-        bankAccount.accountStatus();
-
-
-    }
+//    }
 }

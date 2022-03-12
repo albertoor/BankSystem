@@ -1,24 +1,33 @@
 package Models.bank;
 
 public class InvestmentAccount extends BankAccount{
+    private double interestCommission;
     private double interestToCourt;
-    private double tax = 0.16;
 
-    public InvestmentAccount(double balance, String id, double interestToCourt) {
+    public InvestmentAccount(double balance, String id, double interestToCourt, double interestCommission) {
         super(balance, id);
         this.interestToCourt = interestToCourt;
+        this.interestCommission = interestCommission;
     }
 
     public double getInterestToCourt() {
         return interestToCourt;
     }
 
-    public double getTax() {
-        return tax;
+    public void setInterestToCourt(double interestToCourt) {
+        this.interestToCourt = interestToCourt;
+    }
+
+    public double getInterestCommission() {
+        return interestCommission;
+    }
+
+    public void setInterestCommission(double interestCommision) {
+        this.interestCommission = interestCommision;
     }
 
     public void deposit(double amount){
-        super.deposit(amount);
+        super.deposit(amount );
     }
 
     public void withdrawal(double amount) {
@@ -26,8 +35,8 @@ public class InvestmentAccount extends BankAccount{
     }
 
     public void applyCut() {
-        double grossInterest = getBalance() * interestToCourt;
-        double netInterest = grossInterest - (grossInterest * getTax());
+        double grossInterest = getBalance() * getInterestToCourt();
+        double netInterest = grossInterest - (grossInterest * getInterestCommission());
         deposit(netInterest);
     }
 

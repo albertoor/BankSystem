@@ -55,9 +55,9 @@ public class MovementsAccountsCmds {
 
     public void court(BankAccount bankAccount) {
         if(bankAccount instanceof InvestmentAccount)
-            charge.makeChargeInvestment((InvestmentAccount) bankAccount);
+            court.makeCourtInvestment((InvestmentAccount) bankAccount);
         else
-            System.out.println("No es una cuenta de inversion o tarjeta de credito");
+            System.out.println("No es una cuenta de inversion");
     }
 
 }

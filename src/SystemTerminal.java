@@ -1,4 +1,6 @@
+import Models.bank.Settings;
 import Models.commands.*;
+import Models.commands.subcommands.PropsCmds;
 import Services.ClientsService;
 import Services.ProductManagerService;
 import Utils.GenerateRandom;
@@ -73,6 +75,7 @@ public class SystemTerminal {
         ClientsMenuCommand clientsMenuCommand = new ClientsMenuCommand(gr, clientsService);
         AccountStatusCommand accountStatusCommand = new AccountStatusCommand(productManagerService);
         MovementsAccountsCommand movementsAccountsCommand = new MovementsAccountsCommand(productManagerService);
+        PropsCommand propsCommand = new PropsCommand(productManagerService);
         HelpMenuCommand helpCommand = new HelpMenuCommand();
 
         do {
@@ -86,20 +89,17 @@ public class SystemTerminal {
                 case "clientes":
                     clientsMenuCommand.runCommand();
                     break;
-                case "crear-cuenta-bancaria":
+                case "crear-cuenta":
                     createAccountCommand.runCommand();
                     break;
-                case "estado-cuentas":
+                case "estados":
                     accountStatusCommand.runCommand();
                     break;
-                case "hacer-movimientos":
+                case "movimientos":
                     movementsAccountsCommand.runCommand();
                     break;
-                case "modificar-configuraciones":
-                    System.out.println("configuraciones");
-                    break;
-                case "modificar-propiedades":
-                    System.out.println("Propiedads");
+                case "propiedades":
+                    propsCommand.runCommand();
                     break;
                 case "salir":
                     break;

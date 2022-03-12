@@ -14,11 +14,7 @@ public class SavingsAccount extends BankAccount{
     public void deposit(double amount){
         super.deposit(amount);
     }
-//    public void addInterest(double amout){
-//        double interest = getBalance() * INTEREST_RATE / 100;
-//
-//        deposit(interest);
-//    }
+
 
     @Override
     public void accountStatus() {
