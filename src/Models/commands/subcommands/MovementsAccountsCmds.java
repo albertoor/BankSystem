@@ -5,6 +5,7 @@ import Models.bank.CheckingAccount;
 import Models.bank.InvestmentAccount;
 import Models.bank.SavingsAccount;
 import Models.commands.movements.Charge;
+import Models.commands.movements.Court;
 import Models.commands.movements.Deposit;
 import Models.commands.movements.Withdrawal;
 import Services.ProductManagerService;
@@ -15,12 +16,14 @@ public class MovementsAccountsCmds {
     private Withdrawal withdrawal;
     private Deposit deposit;
     private Charge charge;
+    private Court court;
 
     public MovementsAccountsCmds(ProductManagerService productManagerService) {
         this.productManagerService = productManagerService;
         withdrawal = new Withdrawal();
         deposit = new Deposit();
         charge = new Charge();
+        court = new Court();
     }
 
     public void withdrawal(BankAccount bankAccount) {
@@ -50,5 +53,11 @@ public class MovementsAccountsCmds {
             charge.makeChargeChecking((CheckingAccount) bankAccount);
     }
 
+    public void court(BankAccount bankAccount) {
+        if(bankAccount instanceof InvestmentAccount)
+            charge.makeChargeInvestment((InvestmentAccount) bankAccount);
+        else
+            System.out.println("No es una cuenta de inversion o tarjeta de credito");
+    }
 
 }

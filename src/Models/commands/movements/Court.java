@@ -4,9 +4,8 @@ import Models.bank.CheckingAccount;
 import Models.bank.InvestmentAccount;
 import Models.bank.SavingsAccount;
 
-public class Deposit  {
-
-    public void makeDepositChecking(CheckingAccount checkingAccount) {
+public class Court {
+    public void makeCourtChecking(CheckingAccount checkingAccount) {
         System.out.println("Balance actual: " + checkingAccount.getBalance());
         System.out.print("Ingresa la cantidad a depositar: ");
         double amountToDeposit = Double.parseDouble(System.console().readLine());
@@ -14,7 +13,7 @@ public class Deposit  {
         System.out.println("Nuevo Balance: " + checkingAccount.getBalance());
     }
 
-    public void makeDepositSaving(SavingsAccount savingsAccount) {
+    public void makeCourtSaving(SavingsAccount savingsAccount) {
         System.out.println("Balance actual: " + savingsAccount.getBalance());
         System.out.print("Ingresa la cantidad a depositar: ");
         double amountToDeposit = Double.parseDouble(System.console().readLine());
@@ -22,7 +21,7 @@ public class Deposit  {
         System.out.println("Nuevo Balance: " + savingsAccount.getBalance());
     }
 
-    public void makeDepositInvestment(InvestmentAccount investmentAccount) {
+    public void makeCourtInvestment(InvestmentAccount investmentAccount) {
         System.out.println("Balance actual: " + investmentAccount.getBalance());
         System.out.print("Ingresa la cantidad a depositar: ");
         double amountToDeposit = Double.parseDouble(System.console().readLine());

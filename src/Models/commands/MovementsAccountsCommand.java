@@ -37,7 +37,7 @@ public class MovementsAccountsCommand implements Command {
                         movementsAccountsCmds.charge(bankAccount);
                         break;
                     case "corte":
-                        System.out.println("Corte");
+                        movementsAccountsCmds.court(bankAccount);
                         break;
                     case "deposito":
                         movementsAccountsCmds.deposit(bankAccount);

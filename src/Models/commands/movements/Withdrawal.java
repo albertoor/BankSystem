@@ -1,13 +1,11 @@
 package Models.commands.movements;
 
-import Interfaces.WithdrawalCmd;
 import Models.bank.CheckingAccount;
 import Models.bank.InvestmentAccount;
 import Models.bank.SavingsAccount;
 
-public class Withdrawal implements WithdrawalCmd {
+public class Withdrawal {
 
-    @Override
     public void makeWithdrawalInvestment(InvestmentAccount investmentAccount) {
         System.out.println("Balance actual: " + investmentAccount.getBalance());
         System.out.print("Ingresa la cantidad a retirar: ");
@@ -16,7 +14,6 @@ public class Withdrawal implements WithdrawalCmd {
         System.out.println("Nuevo Balance: " + investmentAccount.getBalance());
     }
 
-    @Override
     public void makeWithdrawalChecking(CheckingAccount checkingAccount) {
         System.out.println("Balance actual: " + checkingAccount.getBalance());
         System.out.print("Ingresa la cantidad a retirar: ");
@@ -25,7 +22,6 @@ public class Withdrawal implements WithdrawalCmd {
         System.out.println("Nuevo Balance: " + checkingAccount.getBalance());
     }
 
-    @Override
     public void makeWithdrawalSaving(SavingsAccount savingsAccount) {
         System.out.println("Balance actual: " + savingsAccount.getBalance());
         System.out.print("Ingresa la cantidad a retirar: ");
