@@ -1,28 +1,27 @@
 package Models.commands.subcommands;
-
 import Models.bank.Client;
 import Services.ClientsService;
 import Utils.GenerateRandom;
+import Utils.ReadInput;
 
 public class ClientsCmds {
     private GenerateRandom gr;
     private ClientsService clientsService;
+    private ReadInput readInput;
 
     public ClientsCmds(GenerateRandom gr, ClientsService clientsService) {
         this.gr = gr;
+        readInput = new ReadInput();
         this.clientsService = clientsService;
     }
 
-    public void createClient(){
-        System.out.print("Porfavor ingresa el nombre del cliente: ");
-        String name = System.console().readLine();
-        System.out.print("Porfavor ingresa el ingreso mensual: ");
-        double incomePerMoth =  Double.parseDouble(System.console().readLine());
-        Client customer = new Client(name, gr.generateId(), incomePerMoth);
-        System.out.println("Cliente creado: ");
-        System.out.println(customer);
-        clientsService.addClient(customer);
-        System.out.println(clientsService.getClienstMap());
+    public void createClient() {
+        String name = readInput.readString("Porfavor ingresa el nombre: ");
+        double incomePerMonth = readInput.readDouble("Porfavor ingresa el ingreso mensual: ");
+        Client client = new Client(name, gr.generateId(), incomePerMonth);
+        clientsService.addClient(client);
+        System.out.println("\nCliente creado: " + client);
+
     }
 
     public void showClients(){

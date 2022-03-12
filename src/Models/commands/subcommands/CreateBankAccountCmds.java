@@ -4,15 +4,18 @@ import Models.bank.*;
 import Services.ClientsService;
 import Services.ProductManagerService;
 import Utils.GenerateRandom;
+import Utils.ReadInput;
 
 public class CreateBankAccountCmds {
     private GenerateRandom gr;
     private ClientsService clientsService;
     private ProductManagerService productManagerService;
+    private ReadInput readInput;
 
     public CreateBankAccountCmds(GenerateRandom gr, ClientsService clientsService, ProductManagerService productManagerService) {
         this.gr = gr;
         this.clientsService = clientsService;
+        readInput = new ReadInput();
         this.productManagerService = productManagerService;
     }
 
@@ -23,16 +26,13 @@ public class CreateBankAccountCmds {
             String id = System.console().readLine();
             validId = clientsService.userExist(id);
             if (validId) {
-                System.out.print("Ingrese el salario: ");
-                double balance = Double.parseDouble(System.console().readLine());
+                double balance = readInput.readDouble("Ingrese el salario: ");
                 SavingsAccount savingsAccount = new SavingsAccount(balance, gr.generateId());
                 Client client = clientsService.findId(id);
-                System.out.println(client.toString());
                 productManagerService.addProduct(client,savingsAccount);
-
-                System.out.println("Cuenta creada: " + savingsAccount.getId());
+                System.out.println("\nCuenta creada: " + savingsAccount.getId() + "\n");
             } else {
-                System.out.println("Id no valido");
+                System.err.println("Id no valido");
             }
         } while (!validId);
     }
@@ -44,24 +44,19 @@ public class CreateBankAccountCmds {
             String id = System.console().readLine();
             validId = clientsService.userExist(id);
             if (validId) {
-                System.out.print("Ingrese el salario: ");
-                double balance = Double.parseDouble(System.console().readLine());
-
-                System.out.print("Ingrese el interes al corte: ");
-                double interestToCourt = Double.parseDouble(System.console().readLine());
-
-                System.out.print("Ingrese el interes de comision: ");
-                double interestCommssion = Double.parseDouble(System.console().readLine());
+                double balance = readInput.readDouble("Ingrese el salario: ");
+                double interestToCourt = readInput.readDouble("Ingrese el interes al corte:" );
+                double interestCommssion = readInput.readDouble("Ingrese el interes de comision: ");
 
                 InvestmentAccount investmentAccount = new InvestmentAccount(balance, gr.generateId(), interestToCourt, interestCommssion );
                 Client client = clientsService.findId(id);
-                System.out.println(client.toString());
+
                 productManagerService.addProduct(client,investmentAccount);
 
-                System.out.println("Cuenta creada: " + investmentAccount.getId());
+                System.out.println("\nCuenta creada: " + investmentAccount.getId() + "\n");
 
             } else {
-                System.out.println("Id no valido");
+                System.err.println("Id no valido");
             }
         } while (!validId);
     }
@@ -73,16 +68,13 @@ public class CreateBankAccountCmds {
             String id = System.console().readLine();
             validId = clientsService.userExist(id);
             if (validId) {
-                System.out.print("Ingrese el salario: ");
-                double balance = Double.parseDouble(System.console().readLine());
+                double balance = readInput.readDouble("Ingrese el salario");
                 CheckingAccount checkingAccount = new CheckingAccount(balance, gr.generateId());
                 Client client = clientsService.findId(id);
-                System.out.println(client.toString());
                 productManagerService.addProduct(client,checkingAccount);
-
-                System.out.println("Cuenta creada: " +checkingAccount.getId());
+                System.out.println("\nCuenta creada: " +checkingAccount.getId() + "\n");
             } else {
-                System.out.println("Id no valido");
+                System.err.println("Id no valido");
             }
         } while (!validId);
     }
@@ -94,20 +86,17 @@ public class CreateBankAccountCmds {
             String id = System.console().readLine();
             validId = clientsService.userExist(id);
             if (validId) {
-                System.out.print("Ingrese el salario: ");
-                double balance = Double.parseDouble(System.console().readLine());
                 Client client = clientsService.findId(id);
-
-                System.out.print("Ingresar la linea de credito: ");
-                double lineOfCredit = Double.parseDouble(System.console().readLine());
+                double balance = readInput.readDouble("Ingrese el salario:");
+                double lineOfCredit = readInput.readDouble("Ingresar la linea de credito: ");
 
                 CreditCardAccount creditCardAccount = new CreditCardAccount(balance, gr.generateId(), lineOfCredit);
                 productManagerService.addProduct(client, creditCardAccount);
 
-                System.out.println("Tarjeta de credito creada: " + creditCardAccount.getId());
+                System.out.println("\nTarjeta de credito creada: " + creditCardAccount.getId() + "\n");
 
             } else {
-                System.out.println("Id no valido");
+                System.err.println("Id no valido");
             }
         } while (!validId);
     }

@@ -5,67 +5,74 @@ import Models.bank.BankAccount;
 import Models.bank.CreditCardAccount;
 import Models.bank.InvestmentAccount;
 import Services.ProductManagerService;
+import Utils.ReadInput;
 
 public class PropsCmds {
-    private InvestmentAccount investmentAccount;
-    private CreditCardAccount creditCardAccount;
     private ProductManagerService productManagerService;
+    private ReadInput readInput = new ReadInput();
+
+    private static final String ID_MSG = "Ingresa id cliente: ";
+    private static final String ID_ACCOUNT_MSG = "Ingresa id de cuenta de inversion: ";
+    private static final String ID_ACCOUNT_CREDIT_MSG = "Ingresa id de cuenta de credito: ";
 
     public PropsCmds(ProductManagerService productManagerService) {
         this.productManagerService = productManagerService;
     }
 
     public void setNewWithdrawalCommision() {
-        System.out.print("Ingresa id cliente: ");
-        String clientId = System.console().readLine();
-        System.out.print("Ingresa id cuenta inversion: ");
-        String bankAccountId = System.console().readLine();
+        String clientId = readInput.readString(ID_MSG);
+        String bankAccountId = readInput.readString(ID_ACCOUNT_MSG);
         BankAccount bankAccount = productManagerService.findBankAccountById(clientId, bankAccountId);
 
-        if (bankAccount instanceof InvestmentAccount) {
-            System.out.println( "Comisio de retiro actual: " + ((InvestmentAccount) bankAccount).getInterestCommission());
-            System.out.print("Ingres la nueva comision de retiro: ");
-            double newWithdrawalCommission = Double.parseDouble(System.console().readLine());
-            ((InvestmentAccount) bankAccount).setInterestCommission(newWithdrawalCommission);
-            System.out.println("Nueva comision de retiro: " + ((InvestmentAccount) bankAccount).getInterestCommission());
+        if (bankAccount != null) {
+            if (bankAccount instanceof InvestmentAccount) {
+                System.out.println( "Comisio de retiro actual: " + ((InvestmentAccount) bankAccount).getInterestCommission());
+                double newWithdrawalCommission = readInput.readDouble("Ingrese la nueva comision de retiro: ");
+                ((InvestmentAccount) bankAccount).setInterestCommission(newWithdrawalCommission);
+                System.out.println("Nueva comision de retiro: " + ((InvestmentAccount) bankAccount).getInterestCommission());
+            } else {
+                System.out.println("No es una cuenta de inversion");
+            }
         } else {
-            System.out.println("No es una cuenta de inversion");
+            System.out.println("No hay cuenta");
         }
     }
 
     public void setNewInteresToCourt(){
-        System.out.print("Ingresa id cliente: ");
-        String clientId = System.console().readLine();
-        System.out.print("Ingresa id cuenta inversion: ");
-        String bankAccountId = System.console().readLine();
+        String clientId = readInput.readString(ID_MSG);
+        String bankAccountId = readInput.readString(ID_ACCOUNT_MSG);
         BankAccount bankAccount = productManagerService.findBankAccountById(clientId, bankAccountId);
 
-        if (bankAccount instanceof InvestmentAccount) {
-            System.out.println( "Comision de interest de corte: " + ((InvestmentAccount) bankAccount).getInterestToCourt());
-            System.out.print("Ingres la nueva comision de retiro: ");
-            double newInterestCourt = Double.parseDouble(System.console().readLine());
-            ((InvestmentAccount) bankAccount).setInterestToCourt(newInterestCourt);
-            System.out.println("Nuevo interest de corte: " + ((InvestmentAccount) bankAccount).getInterestToCourt());
+        if (bankAccount != null) {
+            if (bankAccount instanceof InvestmentAccount) {
+                System.out.println( "Comision de interest de corte: " + ((InvestmentAccount) bankAccount).getInterestToCourt());
+                double newInterestCourt = readInput.readDouble("Ingrese el nuevo interes de corte: ");
+                ((InvestmentAccount) bankAccount).setInterestToCourt(newInterestCourt);
+                System.out.println("Nuevo interest de corte: " + ((InvestmentAccount) bankAccount).getInterestToCourt());
+            } else {
+                System.out.println("No es una cuenta de inversion");
+            }
         } else {
-            System.out.println("No es una cuenta de inversion");
+            System.out.println("No hay cuenta");
         }
     }
 
     public void setNewLineOfCredit(){
-        System.out.print("Ingresa id cliente: ");
-        String clientId = System.console().readLine();
-        System.out.print("Ingresa id cuenta inversion: ");
-        String bankAccountId = System.console().readLine();
+        String clientId = readInput.readString(ID_MSG);
+        String bankAccountId = readInput.readString(ID_ACCOUNT_CREDIT_MSG);
         BankAccount bankAccount = productManagerService.findBankAccountById(clientId, bankAccountId);
 
-        if (bankAccount instanceof CreditCardAccount) {
-            System.out.println( "Linea de credito actual: " + ((CreditCardAccount) bankAccount).getLineOfCredit());
-            System.out.print("Ingres la nueva comision de retiro: ");
-            double newLineCredit = Double.parseDouble(System.console().readLine());
-            ((CreditCardAccount) bankAccount).setLineOfCredit(newLineCredit);
-            System.out.println("Nuevo interest de corte: " + ((CreditCardAccount) bankAccount).getLineOfCredit());
+        if (bankAccount != null ){
+            if (bankAccount instanceof CreditCardAccount) {
+                System.out.println( "Linea de credito actual: " + ((CreditCardAccount) bankAccount).getLineOfCredit());
+                double newLineCredit = readInput.readDouble("Ingrese la nueva linea de credito: ");
+                ((CreditCardAccount) bankAccount).setLineOfCredit(newLineCredit);
+                System.out.println("Nueva liena de credito: " + ((CreditCardAccount) bankAccount).getLineOfCredit());
+            } else {
+                System.out.println("No es una cuenta de inversion");
+            }
         } else {
-            System.out.println("No es una cuenta de inversion");
+            System.out.println("No hay cuenta");
         }
     }
 }

@@ -1,9 +1,9 @@
-import Models.bank.Settings;
+
 import Models.commands.*;
-import Models.commands.subcommands.PropsCmds;
 import Services.ClientsService;
 import Services.ProductManagerService;
 import Utils.GenerateRandom;
+import Utils.ReadInput;
 
 import java.util.Objects;
 
@@ -14,6 +14,7 @@ public class SystemTerminal {
     private static GenerateRandom gr;
     private static ClientsService clientsService;
     private static ProductManagerService productManagerService;
+    private static ReadInput readInput;
 
     public SystemTerminal() {
     }
@@ -39,8 +40,7 @@ public class SystemTerminal {
         if (isLoggedIn) {
             System.out.printf("Successfully logged in as %s%n", username);
             runCommandListener();
-        }
-        else
+        } else
             System.out.println("You have reached your attempts limit");
         System.out.println("PROGRAM END");
     }
@@ -55,7 +55,7 @@ public class SystemTerminal {
         try {
             PropertyHandler.load("/application-default.properties", "application.properties");
             boolean areCredentialsValid = Objects.equals(username, PropertyHandler.getStringProperty(PROP_USERNAME)) &&
-                Objects.equals(password, PropertyHandler.getStringProperty(PROP_PASSWORD));
+                    Objects.equals(password, PropertyHandler.getStringProperty(PROP_PASSWORD));
             PropertyHandler.persist();
             return areCredentialsValid;
         } catch (Exception e) {
@@ -65,15 +65,17 @@ public class SystemTerminal {
     }
 
     // Funciton to listener a command a handler action to execute
-    private static void runCommandListener(){
+    private static void runCommandListener() {
         String command;
         gr = new GenerateRandom();
         clientsService = new ClientsService();
         productManagerService = new ProductManagerService();
+        readInput = new ReadInput();
 
-        CreateAccountMenuCommand createAccountCommand = new CreateAccountMenuCommand(gr, clientsService, productManagerService);
+        CreateAccountMenuCommand createAccountCommand = new CreateAccountMenuCommand(gr, clientsService,
+                productManagerService);
         ClientsMenuCommand clientsMenuCommand = new ClientsMenuCommand(gr, clientsService);
-        AccountStatusCommand accountStatusCommand = new AccountStatusCommand(productManagerService);
+        AccountStatusCommand accountStatusCommand = new AccountStatusCommand(productManagerService, clientsService);
         MovementsAccountsCommand movementsAccountsCommand = new MovementsAccountsCommand(productManagerService);
         PropsCommand propsCommand = new PropsCommand(productManagerService);
         HelpMenuCommand helpCommand = new HelpMenuCommand();
