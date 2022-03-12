@@ -35,7 +35,12 @@ public class ClientsCmds {
         String id = readInput.readString("Ingresa el id: ");
         Client client = clientsService.findId(id);
         if (client != null) {
-            productManagerService.canCancel(client);
+            boolean can = productManagerService.canCancel(client);
+            if (can) {
+                System.out.println("Canelacion autorizada");
+            } else {
+                System.out.println("Canelacion denegada");
+            }
         } else {
             System.out.println("Usuario no existe");
         }

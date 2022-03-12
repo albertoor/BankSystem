@@ -45,15 +45,11 @@ public class CreateBankAccountCmds {
             validId = clientsService.userExist(id);
             if (validId) {
                 double balance = readInput.readDouble("Ingrese el salario: ");
-                double interestCommssion = readInput.readDouble("Ingrese el interes de comision: ");
-
-                InvestmentAccount investmentAccount = new InvestmentAccount(balance, gr.generateId(), interestCommssion );
+                double interestCommission = readInput.readDouble("Ingrese el interes de comision: ");
+                InvestmentAccount investmentAccount = new InvestmentAccount(balance, gr.generateId(), interestCommission);
                 Client client = clientsService.findId(id);
-
-                productManagerService.addProduct(client,investmentAccount);
-
-                System.out.println("\nCuenta creada: " + investmentAccount.getId() + "\n");
-
+                productManagerService.addProduct(client, investmentAccount);
+                BankAccount bankAccount = productManagerService.findBankAccountById(client.getId(), investmentAccount.getId());
             } else {
                 System.err.println("Id no valido");
             }

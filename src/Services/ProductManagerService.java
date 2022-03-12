@@ -3,6 +3,7 @@ package Services;
 import Models.bank.*;
 
 import javax.xml.crypto.dsig.spec.HMACParameterSpec;
+import java.awt.event.WindowStateListener;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -33,11 +34,11 @@ public class ProductManagerService {
         }
         if (product instanceof InvestmentAccount) {
             boolean valid = products.stream().anyMatch(CheckingAccount.class::isInstance);
-            if (valid) {
+            if (!valid) {
                 System.out.println("No se agrego la cuenta de Inversion, debes tener una cuneta de cheques primero");
                 products.add(product);
             } else {
-                System.out.println("Se agrego la cuenta de Inversion");
+                System.out.println("Se agrego la cuenta de Inversion: " + product.getId());
             }
         } else {
             products.add(product);
@@ -64,12 +65,15 @@ public class ProductManagerService {
     public boolean canCancel(Client client) {
         List<BankAccount> products = getProducts(client.getId());
         boolean result = true;
-        for (BankAccount ba : products) {
-            if (ba.getBalance() != 0.0) {
-                result = false;
-                ba.accountStatus();
+        if (products != null){
+            for (BankAccount ba : products) {
+                if (ba.getBalance() != 0.0) {
+                    result = false;
+                    ba.accountStatus();
+                }
             }
+            return result;
         }
-        return result;
+        return false;
     }
 }
